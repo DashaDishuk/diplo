@@ -7,16 +7,26 @@
         function criterionsEnter() {
             var criterionsAmount= parseInt(document.getElementById("criterionsAmount").value, 10);
             alert(criterionsAmount);
-            criterions.push(criterionsAmount);
-            alert(criterions);
-            document.getElementById("criterionsAmount").value = new_criterionsAmount;
+            
+            for (i=0;i<criterionsAmount;i++){
+                criterions[i]=new Map();
+                criterions[i].set("name",prompt("name","somename"));
+                
+                var newDiv = document.createElement("div");
+                var str='<h1>'+criterions[i].get("name")+'</h1>';
+                newDiv.innerHTML = str;
+                my_div = document.getElementById("criterionsForm");
+                document.body.appendChild(newDiv);
+                }
+            
+
             return new_criterionsAmount;}
         </script>
         <style>
         </style>
     </head>
     <body><center>
-    <form name="form">
+    <form name="form" id="criterionsForm">
         <label>Количество критериев:</label>
     <input type="text" id="criterionsAmount" value="0" />
     <input type="button" value="show" onClick="criterionsEnter()">
