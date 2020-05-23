@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="" href="style.css">
-</head>
-<body>
-    <center>
-   <!-- <table id="1">
-        <th colspan="2">
-            hi
-        </th>
-        <tr>
-            <td>
-                <a class="a-as-button" href="html/decision.html">Just solve my proble</a>
-            </td>
-            <td>
-                <a class="a-as-button">2</a>
-            </td>
-        </tr>
-    </table>-->
-    <h1>Hello, you!</h1>
-    <script src="../js/decision.js"></script>
-   
-    <button onclick="button1click()">hhhhe</button>
-</center>
+    <title>Decision</title>
+        <script type="text/javascript">
+        let criterions = new Array();
+        function criterionsEnter() {
+            var criterionsAmount= parseInt(document.getElementById("criterionsAmount").value, 10);
+            alert(criterionsAmount);
+            criterions.push(criterionsAmount);
+            alert(criterions);
+            document.getElementById("criterionsAmount").value = new_criterionsAmount;
+            return new_criterionsAmount;}
+        </script>
+        <style>
+        </style>
+    </head>
+    <body><center>
+    <form name="form">
+        <label>Количество критериев:</label>
+    <input type="text" id="criterionsAmount" value="0" />
+    <input type="button" value="show" onClick="criterionsEnter()">
+    </form>
+</center>    
 </body>
 </html>
