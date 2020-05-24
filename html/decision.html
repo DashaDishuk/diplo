@@ -2,25 +2,95 @@
 <html lang="en">
 <head>
     <title>Decision</title>
+    <link rel="stylesheet" href="../style.css">
         <script type="text/javascript">
         let criterions = new Array();
+
         function criterionsEnter() {
             var criterionsAmount= parseInt(document.getElementById("criterionsAmount").value, 10);
             alert(criterionsAmount);
             
+            //create buttons for criterias. to choose what kind are they
             for (i=0;i<criterionsAmount;i++){
                 criterions[i]=new Map();
                 criterions[i].set("name",prompt("name","somename"));
                 
                 var newDiv = document.createElement("div");
-                var str='<h1>'+criterions[i].get("name")+'</h1>';
-                newDiv.innerHTML = str;
-                my_div = document.getElementById("criterionsForm");
+                var str=criterions[i].get("name");
+                newDiv.innerHTML ='<h1>'+str+'</h1>';
+                newDiv.setAttribute('id','div'+str);
                 document.body.appendChild(newDiv);
+
+                var newButtonL = document.createElement("input");
+                newButtonL.setAttribute('type','button');
+                newButtonL.setAttribute('id','funcChoosing'+str);
+                newButtonL.setAttribute('value','Functional '+str+' criterion');
+                newButtonL.setAttribute('onClick','funcСriterionsCreation("'+str+'",'+i+')');
+
+                var newButtonR = document.createElement("input");
+                newButtonR.setAttribute('type','button');
+                newButtonR.setAttribute('id','tablChoosing'+str);
+                newButtonR.setAttribute('value','Table '+str+' criterion');
+                newButtonR.setAttribute('onClick','tablСriterionsChoosing("'+str+'",'+i+')');
+
+                var newForm=document.createElement("form");
+                newForm.setAttribute('id','form'+str);
+                newForm.appendChild(newButtonL);
+                newForm.appendChild(newButtonR);
+                document.body.appendChild(newForm);
                 }
-            
 
             return new_criterionsAmount;}
+
+            //creates fields for criterias as functions
+            function funcСriterionsCreation(str,i){
+                alert('func');
+                var newDiv=document.createElement("div");
+                newDiv.innerHTML="<p>"+str+"</p>";
+                
+                var newB2=document.createElement("div");
+                newB2.innerHTML="<p>lol "+str+"</p>";
+                
+                
+                document.getElementById("form"+str).prepend(newDiv);
+                alert("after prepend");
+                document.getElementById("funcChoosing"+str).replaceWith(newB2);
+                alert("after replace");
+                document.getElementById("tablChoosing"+str).remove();
+                alert(i);
+            }
+            
+            //creates field for amount and button to submin for criterias as tables
+            function tablСriterionsChoosing(str,i){
+                alert('tabl');
+                var newDiv=document.createElement("input");
+                newDiv.setAttribute('type','text');
+                newDiv.setAttribute('id','paramsAmountFor'+str);
+                newDiv.setAttribute('value','0');
+                
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','tabl'+str);
+                newButton.setAttribute('value','Table amount'+str+' criterion');
+                newButton.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
+                                
+                document.getElementById("form"+str).prepend(newDiv);
+                alert("after prepend");
+                document.getElementById("funcChoosing"+str).replaceWith(newButton);
+                alert("after replace");
+                document.getElementById("tablChoosing"+str).remove();
+                alert(i);
+            }
+
+            function tablСriterionsCreation(str,i) {
+                var paramsAmount= parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
+            alert(paramsAmount);
+            }
+
+            function saveFuncCriterions() {
+                
+            }
+
         </script>
         <style>
         </style>
