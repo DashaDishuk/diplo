@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Table</title>
+    <link rel="stylesheet" href="../style.css">
+        <script type="text/javascript">
+        let criterions = new Array();
+
+        function criterionsEnter() {
+                alert('tabl');
+                var str=''+
+                'dfsdfs'+'  fdfbdb';
+                alert(str);
+                var paramsAmount=2;
+                var innerHtmlText;
+                for (k=0;k<paramsAmount+1;k++){
+                innerHtmlText+='<div>';
+                for (j=0;j<paramsAmount;j++){
+                    innerHtmlText+='<input type="text" id="'+str+k+j+'" value="1">';
+                }
+                innerHtmlText+='</div>';
+            }
+            alert(innerHtmlText)
+
+        
+                /*var newDiv=document.createElement("input");
+                newDiv.setAttribute('type','text');
+                var newDiv=document.createElement("input");
+                newDiv.setAttribute('type','text');
+                var newDiv=document.createElement("input");
+                newDiv.setAttribute('type','text');
+                newDiv.setAttribute('id','paramsAmountFor'+str);
+                newDiv.setAttribute('value','0');
+                
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','tabl'+str);
+                newButton.setAttribute('value','Table amount'+str+' criterion');
+                newButton.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
+                                
+                document.getElementById("form"+str).prepend(newDiv);
+                alert("after prepend");
+                document.getElementById("funcChoosing"+str).replaceWith(newButton);
+                alert("after replace");
+                document.getElementById("tablChoosing"+str).remove();*/
+            }
+
+        </script>
+        <style>
+        </style>
+    </head>
+    <body><center>
+    <form name="form" id="criterionsForm">
+        <label>Количество критериев:</label>
+    <input type="text" id="criterionsAmount" value="0" />
+    <input type="button" value="show" onClick="criterionsEnter()">
+    <div>
+        <input type="text" id="1" value="1">
+        <input type="text" id="2" value="1">
+        <input type="text" id="3" value="1">
+    </div>
+    <div>
+        <input type="text" id="4" value="1">
+        <input type="text" id="5" value="1">
+        <input type="text" id="6" value="1">
+    </div>
+    </form>
+</center>    
+</body>
+</html>

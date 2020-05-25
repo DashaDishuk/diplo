@@ -62,7 +62,6 @@
             
             //creates field for amount and button to submin for criterias as tables
             function tablСriterionsChoosing(str,i){
-                alert('tabl');
                 var newDiv=document.createElement("input");
                 newDiv.setAttribute('type','text');
                 newDiv.setAttribute('id','paramsAmountFor'+str);
@@ -75,16 +74,58 @@
                 newButton.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
                                 
                 document.getElementById("form"+str).prepend(newDiv);
-                alert("after prepend");
                 document.getElementById("funcChoosing"+str).replaceWith(newButton);
-                alert("after replace");
                 document.getElementById("tablChoosing"+str).remove();
-                alert(i);
             }
 
+            //create table for entering params
             function tablСriterionsCreation(str,i) {
                 var paramsAmount= parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
             alert(paramsAmount);
+            var innerHtmlText='';
+            for (k=0;k<paramsAmount+1;k++){
+                innerHtmlText+='<div>';
+                for (j=0;j<paramsAmount;j++){
+                    innerHtmlText+='<input type="text" id="'+str+k+j+'" value="1">';
+                }
+                innerHtmlText+='</div>';
+            }
+           
+            var newButtonR = document.createElement("input");
+                newButtonR.setAttribute('type','button');
+                newButtonR.setAttribute('id','tablSaving'+str);
+                newButtonR.setAttribute('value','Table '+str+' criterion save');
+                newButtonR.setAttribute('onClick','tablСriterionsSave("'+str+'",'+i+','+paramsAmount+')');
+ 
+            var newForm=document.createElement("form");
+            newForm.innerHTML=innerHtmlText;
+            newForm.appendChild(newButtonR);
+            alert(innerHtmlText);
+
+            document.body.appendChild(newForm);
+
+            }
+
+            function tablСriterionsSave(str,i,j){
+                alert(j);
+                for (k=0;k<j+1;k++){
+                    for (q=0;q<j;q++){
+                        alert(parseInt(document.getElementById(str+k+q).value, 10));
+                    }
+                }
+                var paramsAmount= parseInt(document.getElementById(str+j+(j+1)).value, 10);
+                alert(paramsAmount);
+                k=j;
+            /*for (k=0;k<paramsAmount+1;k++){
+                innerHtmlText+='<div>';
+                for (j=0;j<paramsAmount;j++){
+                    innerHtmlText+='<input type="text" id="'+str+k+j+'" value="1">';
+                }
+                innerHtmlText+='</div>';
+            }*/
+
+                criterions[i].set("paramnames",prompt("name","somename"));
+
             }
 
             function saveFuncCriterions() {
