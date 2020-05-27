@@ -42,7 +42,7 @@
 
             return new_criterionsAmount;}
 
-            //creates fields for criterias as functions
+            //TODO creates fields for criterias as functions
             function funcСriterionsCreation(str,i){
                 alert('func');
                 var newDiv=document.createElement("div");
@@ -60,7 +60,7 @@
                 alert(i);
             }
             
-            //creates field for amount and button to submin for criterias as tables
+            //DONE creates field for amount and button to submin for criterias as tables
             function tablСriterionsChoosing(str,i){
                 var newDiv=document.createElement("input");
                 newDiv.setAttribute('type','text');
@@ -78,52 +78,45 @@
                 document.getElementById("tablChoosing"+str).remove();
             }
 
-            //create table for entering params
+            //DONE create table for entering params
             function tablСriterionsCreation(str,i) {
-                var paramsAmount= parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
-            alert(paramsAmount);
-            var innerHtmlText='';
-            for (k=0;k<paramsAmount+1;k++){
-                innerHtmlText+='<div>';
-                for (j=0;j<paramsAmount;j++){
-                    innerHtmlText+='<input type="text" id="'+str+k+j+'" value="1">';
+                var paramsAmount=parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
+                var innerHtmlText='';
+                for (k=0;k<paramsAmount+1;k++){
+                    innerHtmlText+='<div>';
+                    for (j=0;j<paramsAmount;j++){
+                       innerHtmlText+='<input type="text" id="'+str+k+j+'" value="1">';
+                    }
+                    innerHtmlText+='</div>';
                 }
-                innerHtmlText+='</div>';
-            }
            
-            var newButtonR = document.createElement("input");
+                var newButtonR = document.createElement("input");
                 newButtonR.setAttribute('type','button');
                 newButtonR.setAttribute('id','tablSaving'+str);
                 newButtonR.setAttribute('value','Table '+str+' criterion save');
                 newButtonR.setAttribute('onClick','tablСriterionsSave("'+str+'",'+i+','+paramsAmount+')');
  
-            var newForm=document.createElement("form");
-            newForm.innerHTML=innerHtmlText;
-            newForm.appendChild(newButtonR);
-            alert(innerHtmlText);
-
-            document.body.appendChild(newForm);
+                var newForm=document.createElement("form");
+                newForm.innerHTML=innerHtmlText;
+                document.getElementById("paramsAmountFor"+str).replaceWith(newForm);
+                document.getElementById("tabl"+str).replaceWith(newButtonR);
 
             }
 
+            //DOING saving users data from tables 
             function tablСriterionsSave(str,i,j){
-                alert(j);
-                for (k=0;k<j+1;k++){
-                    for (q=0;q<j;q++){
-                        alert(parseInt(document.getElementById(str+k+q).value, 10));
+                let temp=new Array(j);
+                let names=new Array(j);
+                for (k=0;k<j;k++){
+                    temp[k]=[];
+                    names[k]=document.getElementById(str+0+k).value;
+                    for (q=1;q<j+1;q++){
+                        temp[k][q-1]=parseInt(document.getElementById(str+q+k).value, 10);
                     }
                 }
-                var paramsAmount= parseInt(document.getElementById(str+j+(j+1)).value, 10);
-                alert(paramsAmount);
-                k=j;
-            /*for (k=0;k<paramsAmount+1;k++){
-                innerHtmlText+='<div>';
-                for (j=0;j<paramsAmount;j++){
-                    innerHtmlText+='<input type="text" id="'+str+k+j+'" value="1">';
-                }
-                innerHtmlText+='</div>';
-            }*/
-
+                alert(names);
+                criterions[i].set("paramValues",temp);
+                alert(criterions[i].get("paramValues"));
                 criterions[i].set("paramnames",prompt("name","somename"));
 
             }
