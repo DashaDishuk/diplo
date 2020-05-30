@@ -32,36 +32,48 @@
                 newButtonR.setAttribute('id','tablChoosing'+str);
                 newButtonR.setAttribute('value','Table '+str+' criterion');
                 newButtonR.setAttribute('onClick','tablСriterionsChoosing("'+str+'",'+i+')');
+                
+                var newButtonC = document.createElement("input");
+                newButtonC.setAttribute('type','button');
+                newButtonC.setAttribute('id','simpChoosing'+str);
+                newButtonC.setAttribute('value','Simple '+str+' criterion');
+                newButtonC.setAttribute('onClick','simpСriterionsChoosing("'+str+'",'+i+')');
 
                 var newForm=document.createElement("form");
                 newForm.setAttribute('id','form'+str);
                 newForm.appendChild(newButtonL);
                 newForm.appendChild(newButtonR);
+                newForm.appendChild(newButtonC);
                 document.body.appendChild(newForm);
                 }
 
             return new_criterionsAmount;}
 
-            //TODO creates fields for criterias as functions
+            //TODO choosing kind of functions
             function funcСriterionsCreation(str,i){
-                alert('func');
-                var newDiv=document.createElement("div");
-                newDiv.innerHTML="<p>"+str+"</p>";
+                criterions[i].set("criterionType","func");
+
+                var newButtonO = document.createElement("button");
+                newButtonO.setAttribute('id','func'+str);
+                newButtonO.innerHTML="<img src='../img/one.jpg' />"
+                newButtonO.setAttribute('value','Functionamount'+str+' criterion');
+                newButtonO.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
                 
-                var newB2=document.createElement("div");
-                newB2.innerHTML="<p>lol "+str+"</p>";
+                var newButtonT = document.createElement("button");
+                newButtonT.setAttribute('id','func'+str);
+                newButtonT.innerHTML="<img src='../img/three.jpg' />"
+                newButtonT.setAttribute('value','Functionamount'+str+' criterion');
+                newButtonT.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
                 
-                
-                document.getElementById("form"+str).prepend(newDiv);
-                alert("after prepend");
-                document.getElementById("funcChoosing"+str).replaceWith(newB2);
-                alert("after replace");
-                document.getElementById("tablChoosing"+str).remove();
-                alert(i);
+                document.getElementById("funcChoosing"+str).replaceWith(newButtonO);
+                document.getElementById("tablChoosing"+str).replaceWith(newButtonT);
+                document.getElementById("simpChoosing"+str).remove();
             }
             
             //DONE creates field for amount and button to submin for criterias as tables
             function tablСriterionsChoosing(str,i){
+                criterions[i].set("criterionType","table");
+
                 var newDiv=document.createElement("input");
                 newDiv.setAttribute('type','text');
                 newDiv.setAttribute('id','paramsAmountFor'+str);
@@ -76,6 +88,7 @@
                 document.getElementById("form"+str).prepend(newDiv);
                 document.getElementById("funcChoosing"+str).replaceWith(newButton);
                 document.getElementById("tablChoosing"+str).remove();
+                document.getElementById("simpChoosing"+str).remove();
             }
 
             //DONE create table for entering params
@@ -97,13 +110,14 @@
                 newButtonR.setAttribute('onClick','tablСriterionsSave("'+str+'",'+i+','+paramsAmount+')');
  
                 var newForm=document.createElement("form");
+                newForm.setAttribute('id',str+"form");
                 newForm.innerHTML=innerHtmlText;
                 document.getElementById("paramsAmountFor"+str).replaceWith(newForm);
                 document.getElementById("tabl"+str).replaceWith(newButtonR);
 
             }
 
-            //DOING saving users data from tables 
+            //DONE saving users data from tables 
             function tablСriterionsSave(str,i,j){
                 let temp=new Array(j);
                 let names=new Array(j);
@@ -114,15 +128,20 @@
                         temp[k][q-1]=parseInt(document.getElementById(str+q+k).value, 10);
                     }
                 }
-                alert(names);
                 criterions[i].set("paramValues",temp);
-                alert(criterions[i].get("paramValues"));
-                criterions[i].set("paramnames",prompt("name","somename"));
+                criterions[i].set("paramnames",names);
+
+                document.getElementById(str+"form").remove();
+                document.getElementById('tablSaving'+str).remove();
 
             }
 
             function saveFuncCriterions() {
                 
+            }
+
+            function simpСriterionsChoosing(){
+
             }
 
         </script>
