@@ -242,7 +242,6 @@
             //DONE fields for filling simple
             function simpСriterionsCreation(str,i){
                 var paramsAmount=parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
-                alert(paramsAmount);
                 var innerHtmlText='';
                 for (j=0;j<paramsAmount;j++){
                     innerHtmlText+='<div>';
@@ -250,7 +249,6 @@
                     innerHtmlText+='<input type="text" id="'+str+'Name'+j+'" value="name">';
                     innerHtmlText+='</div>';
                 }
-                alert(innerHtmlText);
            
                 var newButtonR = document.createElement("input");
                 newButtonR.setAttribute('type','button');
@@ -274,7 +272,6 @@
                     names[k]=document.getElementById(str+"Name"+k).value;
                 }
 
-                alert(names);
                 criterions[i].set("paramValues",values);
                 criterions[i].set("paramnames",names);
 
