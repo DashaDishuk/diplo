@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="../style.css">
         <script type="text/javascript">
         let criterions = new Array();
+        let alternatives = new Array();
+        let criterionWeights = new Array();
 
         function criterionsEnter() {
             var criterionsAmount= parseInt(document.getElementById("criterionsAmount").value, 10);
-            alert(criterionsAmount);
             
             //create buttons for criterias. to choose what kind are they
             for (i=0;i<criterionsAmount;i++){
@@ -135,7 +136,7 @@
                 for (k=0;k<x.length;k++){
                     x[k]=parseFloat(document.getElementById(str+"x"+k).value);
                 }
-                criterions[i].set("funcValues",x);
+                criterions[i].set("paramValues",x);
                 document.getElementById("div"+str).remove();
                 document.getElementById("form"+str).remove();
             }
@@ -146,7 +147,7 @@
                 for (k=0;k<x.length;k++){
                     x[k]=parseFloat(document.getElementById(str+"x"+k).value);
                 }
-                criterions[i].set("funcValues",x);
+                criterions[i].set("paramValues",x);
                 document.getElementById("div"+str).remove();
                 document.getElementById("form"+str).remove();
             }
@@ -220,7 +221,7 @@
 
             //DONE simple criterias
             function simpСriterionsChoosing(str,i){                
-                criterions[i].set("criterionType","simpl");
+                criterions[i].set("criterionType","simp");
 
                 var newDiv=document.createElement("input");
                 newDiv.setAttribute('type','text');
@@ -263,26 +264,77 @@
                 document.getElementById("simp"+str).replaceWith(newButtonR);
             }
 
+            //DONE saving simple data
             function simpСriterionsSave(str,i,j){
                 alert("p am = "+j);
                 let values=new Array(j);
                 let names=new Array(j);
                 for (k=0;k<j;k++){
-                    values[k]=document.getElementById(str+"Val"+k).value;;
-                    names[k]=document.getElementById(str+"Name"+k).value;
+                    criterions[i].set(document.getElementById(str+"Name"+k).value,document.getElementById(str+"Val"+k).value);
                 }
-
-                criterions[i].set("paramValues",values);
-                criterions[i].set("paramnames",names);
 
                 document.getElementById("div"+str).remove();
                 document.getElementById("form"+str).remove();
                 document.getElementById('simpSaving'+str).remove();
             }
 
-            //TODO entering alts
+            //DONE entering alts
             function altern(i){
-                alert(i);
+                altAmount=parseInt(prompt("How many?","0"));
+                for(j=0;j<altAmount;j++){
+                    var newDiv=document.createElement("div");
+                    newDiv.setAttribute("id","alternativeDiv"+j);
+                    newDiv.innerHTML="<h1>Alternative "+j+"</h1>";
+
+                    var newForm=document.createElement("form");
+                    newForm.setAttribute("id","alternativeForm"+j);
+
+                    document.body.appendChild(newDiv);
+                    document.getElementById("alternativeDiv"+j).appendChild(newForm);
+
+                    for(k=0;k<i;k++){
+                        var newP=document.createElement("br");
+                        var newField=document.createElement("input");
+                        newField.setAttribute('type','text');
+                        newField.setAttribute('id','alterCrit'+j+k);
+                        newField.setAttribute('value',criterions[k].get("name")+" value");
+                        document.getElementById("alternativeForm"+j).appendChild(newField);
+                        document.getElementById("alternativeForm"+j).appendChild(newP);
+                    }
+                }
+
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','altsaving');
+                newButton.setAttribute('value','Save');
+                newButton.setAttribute('onClick','saveAlters("'+altAmount+'",'+i+')');
+                document.body.appendChild(newButton);
+            }
+
+            //DONE Saving alts
+            function saveAlters(altAmount,i){
+                document.getElementById("alts").remove();
+                for (k=0;k<altAmount;k++){
+                    alternatives[k]=new Map();
+                    for(j=0;j<i;j++){
+                        alternatives[k].set(criterions[j].get("name"),document.getElementById('alterCrit'+k+j).value);
+                        alert(alternatives[k].get(criterions[j].get("name")));
+                    }
+                    document.getElementById("alternativeDiv"+k).remove();
+                }
+
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','rangeAlts');
+                newButton.setAttribute('value','Range alternatives');
+                newButton.setAttribute('onClick','range()');
+
+                document.getElementById("altsaving").replaceWith(newButton);
+            }
+        
+            //TODO range alternatives
+            function range(){
+                alert("doin");
             }
 
         </script>
