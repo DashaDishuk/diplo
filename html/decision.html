@@ -25,7 +25,7 @@
                 newButtonL.setAttribute('type','button');
                 newButtonL.setAttribute('id','funcChoosing'+str);
                 newButtonL.setAttribute('value','Functional '+str+' criterion');
-                newButtonL.setAttribute('onClick','funcСriterionsCreation("'+str+'",'+i+')');
+                newButtonL.setAttribute('onClick','funcСriterionsChoosing("'+str+'",'+i+')');
 
                 var newButtonR = document.createElement("input");
                 newButtonR.setAttribute('type','button');
@@ -47,29 +47,110 @@
                 document.body.appendChild(newForm);
                 }
 
-            return new_criterionsAmount;}
+            var newButtonA = document.createElement("input");
+            newButtonA.setAttribute('type','button');
+            newButtonA.setAttribute('id','alts');
+            newButtonA.setAttribute('value','Enter alts');
+            newButtonA.setAttribute('onClick','altern('+i+')');            
+            document.body.appendChild(newButtonA);
 
-            //TODO choosing kind of functions
-            function funcСriterionsCreation(str,i){
+            return new_criterionsAmount;
+            }
+
+            //DONE choosing kind of functions
+            function funcСriterionsChoosing(str,i){
                 criterions[i].set("criterionType","func");
 
-                var newButtonO = document.createElement("button");
-                newButtonO.setAttribute('id','func'+str);
-                newButtonO.innerHTML="<img src='../img/one.jpg' />"
-                newButtonO.setAttribute('value','Functionamount'+str+' criterion');
-                newButtonO.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
-                
-                var newButtonT = document.createElement("button");
-                newButtonT.setAttribute('id','func'+str);
-                newButtonT.innerHTML="<img src='../img/three.jpg' />"
-                newButtonT.setAttribute('value','Functionamount'+str+' criterion');
-                newButtonT.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
-                
-                document.getElementById("funcChoosing"+str).replaceWith(newButtonO);
-                document.getElementById("tablChoosing"+str).replaceWith(newButtonT);
+                var newDivO = document.createElement("div");
+                newDivO.innerHTML='<img src="../img/one.jpg"><br>';
+                newDivO.setAttribute("id","funcO"+str);
+                newButtonO = document.createElement("input");
+                newButtonO.setAttribute('type','button');
+                newButtonO.setAttribute('value','Func one-side '+str+' criterion');
+                newButtonO.setAttribute('onClick','funcСriterionsCreationO("'+str+'",'+i+')');
+                newDivO.appendChild(newButtonO);
+
+                var newDivT = document.createElement("div");
+                newDivT.innerHTML='<img src="../img/three.jpg"><br>';
+                newDivT.setAttribute("id","funcT"+str);
+                newButtonT = document.createElement("input");
+                newButtonT.setAttribute('type','button');
+                newButtonT.setAttribute('value','Func both-side '+str+' criterion');
+                newButtonT.setAttribute('onClick','funcСriterionsCreationT("'+str+'",'+i+')');
+                newDivT.appendChild(newButtonT);
+                                
+                document.getElementById("funcChoosing"+str).replaceWith(newDivO);
+                document.getElementById("tablChoosing"+str).replaceWith(newDivT);
                 document.getElementById("simpChoosing"+str).remove();
             }
             
+            //DONE filling data for one-side function criterias
+            function funcСriterionsCreationO(str, i){                
+                criterions[i].set("criterionType","funcO");
+                var newDiv = document.createElement("div");
+                newDiv.innerHTML='<img src="../img/onefill.jpg"><br>';
+                newDiv.setAttribute("id","funcFilling"+str);
+
+                innerHtmlText='<input type="text" id="'+str+'x0" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x1" value="1">';
+                newDiv.innerHTML+=innerHtmlText;
+
+                newButtonT = document.createElement("input");
+                newButtonT.setAttribute('type','button');
+                newButtonT.setAttribute('value','Save');
+                newButtonT.setAttribute('onClick','funcСriterionsSaveO("'+str+'",'+i+')');
+                newDiv.appendChild(newButtonT);
+            
+                document.getElementById("funcO"+str).replaceWith(newDiv);
+                document.getElementById("funcT"+str).remove();
+            }
+
+            //DONE filling data for both-side function criterias
+            function funcСriterionsCreationT(str, i){                
+                criterions[i].set("criterionType","funcO");
+                var newDiv = document.createElement("div");
+                newDiv.innerHTML='<img src="../img/threefill.jpg"><br>';
+                newDiv.setAttribute("id","funcFilling"+str);
+
+                innerHtmlText='<input type="text" id="'+str+'x0" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x1" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x2" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x3" value="1">';
+                newDiv.innerHTML+=innerHtmlText;
+
+                newButtonT = document.createElement("input");
+                newButtonT.setAttribute('type','button');
+                newButtonT.setAttribute('value','Save');
+                newButtonT.setAttribute('onClick','funcСriterionsSaveT("'+str+'",'+i+')');
+                newDiv.appendChild(newButtonT);
+              
+                document.getElementById("funcO"+str).replaceWith(newDiv);
+                document.getElementById("funcT"+str).remove();
+
+            }
+
+            //DONE saving data for one-side functions
+            function funcСriterionsSaveO(str,i){
+                let x=new Array(2);
+                for (k=0;k<x.length;k++){
+                    x[k]=parseFloat(document.getElementById(str+"x"+k).value);
+                }
+                criterions[i].set("funcValues",x);
+                document.getElementById("div"+str).remove();
+                document.getElementById("form"+str).remove();
+            }
+
+            //DONE saving data for both-side functions
+            function funcСriterionsSaveT(str,i){
+                let x=new Array(4);
+                for (k=0;k<x.length;k++){
+                    x[k]=parseFloat(document.getElementById(str+"x"+k).value);
+                }
+                criterions[i].set("funcValues",x);
+                document.getElementById("div"+str).remove();
+                document.getElementById("form"+str).remove();
+            }
+
             //DONE creates field for amount and button to submin for criterias as tables
             function tablСriterionsChoosing(str,i){
                 criterions[i].set("criterionType","table");
@@ -131,17 +212,80 @@
                 criterions[i].set("paramValues",temp);
                 criterions[i].set("paramnames",names);
 
+                document.getElementById("div"+str).remove();
                 document.getElementById(str+"form").remove();
                 document.getElementById('tablSaving'+str).remove();
 
             }
 
-            function saveFuncCriterions() {
+            //DONE simple criterias
+            function simpСriterionsChoosing(str,i){                
+                criterions[i].set("criterionType","simpl");
+
+                var newDiv=document.createElement("input");
+                newDiv.setAttribute('type','text');
+                newDiv.setAttribute('id','paramsAmountFor'+str);
+                newDiv.setAttribute('value','0');
                 
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','simp'+str);
+                newButton.setAttribute('value','Create');
+                newButton.setAttribute('onClick','simpСriterionsCreation("'+str+'",'+i+')');
+                                
+                document.getElementById("form"+str).prepend(newDiv);
+                document.getElementById("funcChoosing"+str).replaceWith(newButton);
+                document.getElementById("tablChoosing"+str).remove();
+                document.getElementById("simpChoosing"+str).remove();
             }
 
-            function simpСriterionsChoosing(){
+            //DONE fields for filling simple
+            function simpСriterionsCreation(str,i){
+                var paramsAmount=parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
+                alert(paramsAmount);
+                var innerHtmlText='';
+                for (j=0;j<paramsAmount;j++){
+                    innerHtmlText+='<div>';
+                    innerHtmlText+='<input type="text" id="'+str+'Val'+j+'" value="value">';
+                    innerHtmlText+='<input type="text" id="'+str+'Name'+j+'" value="name">';
+                    innerHtmlText+='</div>';
+                }
+                alert(innerHtmlText);
+           
+                var newButtonR = document.createElement("input");
+                newButtonR.setAttribute('type','button');
+                newButtonR.setAttribute('id','simpSaving'+str);
+                newButtonR.setAttribute('value','Save');
+                newButtonR.setAttribute('onClick','simpСriterionsSave("'+str+'",'+i+','+paramsAmount+')');
+ 
+                var newForm=document.createElement("form");
+                newForm.setAttribute('id',str+"form");
+                newForm.innerHTML=innerHtmlText;
+                document.getElementById("paramsAmountFor"+str).replaceWith(newForm);
+                document.getElementById("simp"+str).replaceWith(newButtonR);
+            }
 
+            function simpСriterionsSave(str,i,j){
+                alert("p am = "+j);
+                let values=new Array(j);
+                let names=new Array(j);
+                for (k=0;k<j;k++){
+                    values[k]=document.getElementById(str+"Val"+k).value;;
+                    names[k]=document.getElementById(str+"Name"+k).value;
+                }
+
+                alert(names);
+                criterions[i].set("paramValues",values);
+                criterions[i].set("paramnames",names);
+
+                document.getElementById("div"+str).remove();
+                document.getElementById("form"+str).remove();
+                document.getElementById('simpSaving'+str).remove();
+            }
+
+            //TODO entering alts
+            function altern(i){
+                alert(i);
             }
 
         </script>
