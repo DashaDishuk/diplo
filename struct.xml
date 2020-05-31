@@ -18,6 +18,16 @@
 +/criterions-Array
 +/criterions[i]-Map
 +/criterions[i]["name"]-String
++/criterions[i]["criterionType"]-String
+/criterions[i]["weight"]
+
+table:
 +/criterions[i]["paramnames"]-Array[]
 +/criterions[i]["paramValues"]-Array[][]
-/criterions[i]["weight"]
+
+funcO,funcT:
++/criterions[i]["paramValues"]-Array[]
+
+simple:
++/criterions[i]["paramnames"]-Array[]
++/criterions[i]["paramValues"]-Array[]
