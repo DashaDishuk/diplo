@@ -15,3 +15,9 @@
 как решается
 - пользователь вводит количество критериев
 - вводит по каждому критерию  значения
++/criterions-Array
++/criterions[i]-Map
++/criterions[i]["name"]-String
++/criterions[i]["paramnames"]-Array[]
++/criterions[i]["paramValues"]-Array[][]
+/criterions[i]["weight"]
