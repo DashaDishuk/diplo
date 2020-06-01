@@ -7,6 +7,7 @@
         let criterions = new Array();
         let alternatives = new Array();
         let criterionWeights = new Array();
+        let alternativeCompare = new Array();
 
         function criterionsEnter() {
             var criterionsAmount= parseInt(document.getElementById("criterionsAmount").value, 10);
@@ -377,17 +378,24 @@
             }
         
             //TODO func counting
-            function funcNorm(){
-                
+            function altNorm(){
+                for (i=0;i<alternatives.length;i++){
+                    alternativeCompare[i]=new Array();
+                    for (j=0;j<criterions.length;j++){
+                        alternativeCompare[i][j]=alternatives[i].get(criterions[j].get("name"));
+                        //alternativeCompare[i][j]=criterions[j](alternatives[i].get(alternativeCompare[i][j]));
+                    }
+                }
+                alert(alternativeCompare);
             }
             
             //TODO range alternatives
             function range(){
                 tableNorm();
-                funcNorm();
+                altNorm();/*
                 for (i=0;i<criterions.length;i++){
                     alert(criterions[i].get(alternatives[0].get(criterions[i].get("name"))));
-                }
+                }*/alert("good");
             }
 
         </script>
