@@ -14,7 +14,8 @@
             //create buttons for criterias. to choose what kind are they
             for (i=0;i<criterionsAmount;i++){
                 criterions[i]=new Map();
-                criterions[i].set("name",prompt("name","somename"));
+                criterions[i].set("name",prompt("Crit. name","somename"));
+                criterionWeights[i]=parseFloat(prompt("Crit. weight","somename"));
                 
                 var newDiv = document.createElement("div");
                 var str=criterions[i].get("name");
@@ -270,8 +271,12 @@
                 let values=new Array(j);
                 let names=new Array(j);
                 for (k=0;k<j;k++){
+                    values[k]=document.getElementById(str+"Val"+k).value;
+                    names[k]=document.getElementById(str+"Name"+k).value;
                     criterions[i].set(document.getElementById(str+"Name"+k).value,document.getElementById(str+"Val"+k).value);
                 }
+                criterions[i].set("paramNames",names);
+                criterions[i].set("paramValues",values);
 
                 document.getElementById("div"+str).remove();
                 document.getElementById("form"+str).remove();
@@ -318,7 +323,6 @@
                     alternatives[k]=new Map();
                     for(j=0;j<i;j++){
                         alternatives[k].set(criterions[j].get("name"),document.getElementById('alterCrit'+k+j).value);
-                        alert(alternatives[k].get(criterions[j].get("name")));
                     }
                     document.getElementById("alternativeDiv"+k).remove();
                 }
@@ -331,10 +335,59 @@
 
                 document.getElementById("altsaving").replaceWith(newButton);
             }
+
+            //DONE table transform
+            function tableNorm(){
+                alert("doin tN");
+                for (i=0;i<criterions.length;i++){
+                    if (criterions[i].get("criterionType")=="table"){
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            for (k=0;k<criterions[i].get("paramValues").length;k++){
+                                if((criterions[i].get("paramValues"))[k][j]>1){
+                                    (criterions[i].get("paramValues"))[j][k]=1/(criterions[i].get("paramValues"))[k][j]
+                                }
+                            }
+                        }
+
+                        var temp=new Array();
+                        sum=0;
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            temp[j]=1;
+                            for (k=0;k<criterions[i].get("paramValues").length;k++){
+                                temp[j]*=(criterions[i].get("paramValues"))[k][j];
+                            }
+                            temp[j]=Math.pow(temp[j],(1/criterions[i].get("paramValues").length));
+                            sum+=temp[j];
+                        }
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            temp[j]=(temp[j]/sum);
+                        }
+                        maxT=Math.max.apply(null,temp);
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            temp[j]=(temp[j]/maxT);
+                        }
+
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            //alert((criterions[i].get("paramnames"))[j]);
+                            criterions[i].set((criterions[i].get("paramnames"))[j],temp[j]);
+                        }
+                    }
+                }
+
+            }
         
+            //TODO func counting
+            function funcNorm(){
+                
+            }
+            
             //TODO range alternatives
             function range(){
-                alert("doin");
+                tableNorm();
+                funcNorm();
+                for (i=0;i<criterions.length;i++){
+                    alert(criterions[i].get(alternatives[0].get(criterions[i].get("name"))));
+                }
             }
 
         </script>
