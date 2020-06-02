@@ -17,17 +17,19 @@
 - вводит по каждому критерию  значения
 +/criterions-Array
 +/criterions[i]-Map
-+/criterions[i]["name"]-String
-+/criterions[i]["criterionType"]-String
++/criterions[i]["name"] - String
++/criterions[i]["criterionType"] - String
 /criterions[i]["weight"]
 
 table:
-+/criterions[i]["paramnames"]-Array[]
-+/criterions[i]["paramValues"]-Array[][]
++/criterions[i]["paramnames"] - Array[]
++/criterions[i]["paramValues"] - Array[][]
++/criterions[i]["%paramName%"] - %paramValue% - Float
 
 funcO,funcT:
-+/criterions[i]["paramValues"]-Array[]
++/criterions[i]["paramValues"] - Array[]
 
 simple:
-+/criterions[i]["paramnames"]-Array[]
-+/criterions[i]["paramValues"]-Array[]
++/criterions[i]["paramnames"] - Array[]
++/criterions[i]["paramValues"] - Array[]
++/criterions[i]["%paramName%"] - %paramValue% - Float
