@@ -16,8 +16,8 @@
             //create buttons for criterias. to choose what kind are they
             for (i=0;i<criterionsAmount;i++){
                 criterions[i]=new Map();
-                criterions[i].set("name",prompt("Crit. name","somename"));
-                criterionWeights[i]=parseFloat(prompt("Crit. weight","somename"));
+                criterions[i].set("name",prompt("Критерий","Название"));
+                criterionWeights[i]=parseFloat(prompt("Вес критерия","значение"));
                 
                 var newDiv = document.createElement("div");
                 var str=criterions[i].get("name");
@@ -28,19 +28,19 @@
                 var newButtonL = document.createElement("input");
                 newButtonL.setAttribute('type','button');
                 newButtonL.setAttribute('id','funcChoosing'+str);
-                newButtonL.setAttribute('value','Functional '+str+' criterion');
+                newButtonL.setAttribute('value','Функция');
                 newButtonL.setAttribute('onClick','funcСriterionsChoosing("'+str+'",'+i+')');
 
                 var newButtonR = document.createElement("input");
                 newButtonR.setAttribute('type','button');
                 newButtonR.setAttribute('id','tablChoosing'+str);
-                newButtonR.setAttribute('value','Table '+str+' criterion');
+                newButtonR.setAttribute('value','Таблица');
                 newButtonR.setAttribute('onClick','tablСriterionsChoosing("'+str+'",'+i+')');
                 
                 var newButtonC = document.createElement("input");
                 newButtonC.setAttribute('type','button');
                 newButtonC.setAttribute('id','simpChoosing'+str);
-                newButtonC.setAttribute('value','Simple '+str+' criterion');
+                newButtonC.setAttribute('value','Простое задание');
                 newButtonC.setAttribute('onClick','simpСriterionsChoosing("'+str+'",'+i+')');
 
                 var newForm=document.createElement("form");
@@ -50,13 +50,16 @@
                 newForm.appendChild(newButtonC);
                 document.body.appendChild(newForm);
                 }
-
+                
+            var newDiv = document.createElement("div");
+            newDiv.setAttribute('id','altsDiv');
             var newButtonA = document.createElement("input");
             newButtonA.setAttribute('type','button');
             newButtonA.setAttribute('id','alts');
-            newButtonA.setAttribute('value','Enter alts');
+            newButtonA.setAttribute('value','Ввести альтернативы');
             newButtonA.setAttribute('onClick','altern('+i+')');            
-            document.body.appendChild(newButtonA);
+            document.body.appendChild(newDiv);            
+            document.getElementById("altsDiv").appendChild(newButtonA);
 
             return new_criterionsAmount;
             }
@@ -70,7 +73,7 @@
                 newDivO.setAttribute("id","funcO"+str);
                 newButtonO = document.createElement("input");
                 newButtonO.setAttribute('type','button');
-                newButtonO.setAttribute('value','Func one-side '+str+' criterion');
+                newButtonO.setAttribute('value','Возрастание');
                 newButtonO.setAttribute('onClick','funcСriterionsCreationO("'+str+'",'+i+')');
                 newDivO.appendChild(newButtonO);
 
@@ -79,7 +82,7 @@
                 newDivTw.setAttribute("id","funcTw"+str);
                 newButtonTw = document.createElement("input");
                 newButtonTw.setAttribute('type','button');
-                newButtonTw.setAttribute('value','Func one-side '+str+' criterion');
+                newButtonTw.setAttribute('value','Убывание');
                 newButtonTw.setAttribute('onClick','funcСriterionsCreationTw("'+str+'",'+i+')');
                 newDivTw.appendChild(newButtonTw);
                                 
@@ -88,7 +91,7 @@
                 newDivTh.setAttribute("id","funcTh"+str);
                 newButtonTh = document.createElement("input");
                 newButtonTh.setAttribute('type','button');
-                newButtonTh.setAttribute('value','Func both-side '+str+' criterion');
+                newButtonTh.setAttribute('value','Комбо');
                 newButtonTh.setAttribute('onClick','funcСriterionsCreationTh("'+str+'",'+i+')');
                 newDivTh.appendChild(newButtonTh);
                                 
@@ -110,7 +113,7 @@
 
                 newButtonT = document.createElement("input");
                 newButtonT.setAttribute('type','button');
-                newButtonT.setAttribute('value','Save');
+                newButtonT.setAttribute('value','Сохранить');
                 newButtonT.setAttribute('onClick','funcСriterionsSaveO("'+str+'",'+i+')');
                 newDiv.appendChild(newButtonT);
             
@@ -133,7 +136,7 @@
 
                 newButtonT = document.createElement("input");
                 newButtonT.setAttribute('type','button');
-                newButtonT.setAttribute('value','Save');
+                newButtonT.setAttribute('value','Сохранить');
                 newButtonT.setAttribute('onClick','funcСriterionsSaveTw("'+str+'",'+i+')');
                 newDiv.appendChild(newButtonT);
             
@@ -158,7 +161,7 @@
 
                 newButtonT = document.createElement("input");
                 newButtonT.setAttribute('type','button');
-                newButtonT.setAttribute('value','Save');
+                newButtonT.setAttribute('value','Сохранить');
                 newButtonT.setAttribute('onClick','funcСriterionsSaveTh("'+str+'",'+i+')');
                 newDiv.appendChild(newButtonT);
               
@@ -215,7 +218,7 @@
                 var newButton = document.createElement("input");
                 newButton.setAttribute('type','button');
                 newButton.setAttribute('id','tabl'+str);
-                newButton.setAttribute('value','Table amount'+str+' criterion');
+                newButton.setAttribute('value','Количество параметров');
                 newButton.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
                                 
                 document.getElementById("form"+str).prepend(newDiv);
@@ -227,8 +230,12 @@
             //DONE create table for entering params
             function tablСriterionsCreation(str,i) {
                 var paramsAmount=parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
-                var innerHtmlText='';
-                for (k=0;k<paramsAmount+1;k++){
+                var innerHtmlText='<div>';
+                for (j=0;j<paramsAmount;j++){
+                    innerHtmlText+='<input type="text" id="'+str+"0"+j+'" value="Параметр">';
+                }
+                innerHtmlText+='</div>';
+                for (k=1;k<paramsAmount+1;k++){
                     innerHtmlText+='<div>';
                     for (j=0;j<paramsAmount;j++){
                        innerHtmlText+='<input type="text" id="'+str+k+j+'" value="1">';
@@ -239,7 +246,7 @@
                 var newButtonR = document.createElement("input");
                 newButtonR.setAttribute('type','button');
                 newButtonR.setAttribute('id','tablSaving'+str);
-                newButtonR.setAttribute('value','Table '+str+' criterion save');
+                newButtonR.setAttribute('value','Сохранить');
                 newButtonR.setAttribute('onClick','tablСriterionsSave("'+str+'",'+i+','+paramsAmount+')');
  
                 var newForm=document.createElement("form");
@@ -265,7 +272,7 @@
                 criterions[i].set("paramnames",names);
 
                 document.getElementById("div"+str).remove();
-                document.getElementById(str+"form").remove();
+                document.getElementById("form"+str).remove();
                 document.getElementById('tablSaving'+str).remove();
 
             }
@@ -282,7 +289,7 @@
                 var newButton = document.createElement("input");
                 newButton.setAttribute('type','button');
                 newButton.setAttribute('id','simp'+str);
-                newButton.setAttribute('value','Create');
+                newButton.setAttribute('value','Создать');
                 newButton.setAttribute('onClick','simpСriterionsCreation("'+str+'",'+i+')');
                                 
                 document.getElementById("form"+str).prepend(newDiv);
@@ -297,15 +304,15 @@
                 var innerHtmlText='';
                 for (j=0;j<paramsAmount;j++){
                     innerHtmlText+='<div>';
-                    innerHtmlText+='<input type="text" id="'+str+'Val'+j+'" value="value">';
-                    innerHtmlText+='<input type="text" id="'+str+'Name'+j+'" value="name">';
+                    innerHtmlText+='<input type="text" id="'+str+'Val'+j+'" value="значение">';
+                    innerHtmlText+='<input type="text" id="'+str+'Name'+j+'" value="название">';
                     innerHtmlText+='</div>';
                 }
            
                 var newButtonR = document.createElement("input");
                 newButtonR.setAttribute('type','button');
                 newButtonR.setAttribute('id','simpSaving'+str);
-                newButtonR.setAttribute('value','Save');
+                newButtonR.setAttribute('value','Сохранить');
                 newButtonR.setAttribute('onClick','simpСriterionsSave("'+str+'",'+i+','+paramsAmount+')');
  
                 var newForm=document.createElement("form");
@@ -317,7 +324,6 @@
 
             //DONE saving simple data
             function simpСriterionsSave(str,i,j){
-                alert("p am = "+j);
                 let values=new Array(j);
                 let names=new Array(j);
                 for (k=0;k<j;k++){
@@ -335,11 +341,11 @@
 
             //DONE entering alts
             function altern(i){
-                altAmount=parseInt(prompt("How many?","0"));
+                altAmount=parseInt(prompt("Количество альтернатив","0"));
                 for(j=0;j<altAmount;j++){
                     var newDiv=document.createElement("div");
                     newDiv.setAttribute("id","alternativeDiv"+j);
-                    newDiv.innerHTML="<h1>Alternative "+j+"</h1>";
+                    newDiv.innerHTML="<h1>Альтернатива "+j+"</h1>";
 
                     var newForm=document.createElement("form");
                     newForm.setAttribute("id","alternativeForm"+j);
@@ -352,23 +358,29 @@
                         var newField=document.createElement("input");
                         newField.setAttribute('type','text');
                         newField.setAttribute('id','alterCrit'+j+k);
-                        newField.setAttribute('value',criterions[k].get("name")+" value");
+                        newField.setAttribute('value',criterions[k].get("name")+" значение");
                         document.getElementById("alternativeForm"+j).appendChild(newField);
                         document.getElementById("alternativeForm"+j).appendChild(newP);
                     }
                 }
 
+                document.getElementById("mainDiv").remove();
+                document.getElementById("altsDiv").remove();
+                
+
+                var newDiv = document.createElement("div");
+                newDiv.setAttribute('id','altsSavingDiv');
                 var newButton = document.createElement("input");
                 newButton.setAttribute('type','button');
                 newButton.setAttribute('id','altsaving');
-                newButton.setAttribute('value','Save');
-                newButton.setAttribute('onClick','saveAlters("'+altAmount+'",'+i+')');
-                document.body.appendChild(newButton);
+                newButton.setAttribute('value','Сохранить');
+                newButton.setAttribute('onClick','saveAlters("'+altAmount+'",'+i+')');            
+                document.body.appendChild(newDiv);            
+                document.getElementById("altsSavingDiv").appendChild(newButton);
             }
 
             //DONE Saving alts
             function saveAlters(altAmount,i){
-                document.getElementById("alts").remove();
                 for (k=0;k<altAmount;k++){
                     alternatives[k]=new Map();
                     for(j=0;j<i;j++){
@@ -380,7 +392,7 @@
                 var newButton = document.createElement("input");
                 newButton.setAttribute('type','button');
                 newButton.setAttribute('id','rangeAlts');
-                newButton.setAttribute('value','Range alternatives');
+                newButton.setAttribute('value','Выбрать наилучшую альтернативу');
                 newButton.setAttribute('onClick','range()');
 
                 document.getElementById("altsaving").replaceWith(newButton);
@@ -388,7 +400,6 @@
 
             //DONE table transform
             function tableNorm(){
-                alert("doin tN");
                 for (i=0;i<criterions.length;i++){
                     if (criterions[i].get("criterionType")=="table"){
                         for (j=0;j<criterions[i].get("paramValues").length;j++){
@@ -531,19 +542,29 @@
             function range(){
                 tableNorm();
                 var bestI=altNorm();
-                alert(bestI);
+                //alert(bestI);
+                //document.getElementById("altsSavingDiv").remove();
+                document.getElementById("rangeAlts").remove();
+                var newField = document.createElement("div");
+                newField.innerHTML='<h1>Лучшая альтернатива</h1>';
+                for(i=0;i<criterions.length;i++){
+                    var critName=criterions[i].get("name");
+                    var critValue=alternatives[bestI].get(critName);
+                    
+                    newField.innerHTML+='<h3>'+critName+' со значением '+critValue+'</h3>';
+                }
+                document.body.appendChild(newField);
             }
 
         </script>
         <style>
         </style>
     </head>
-    <body><center>
+    <body><div id="mainDiv">
     <form name="form" id="criterionsForm">
-        <label>Количество критериев:</label>
-    <input type="text" id="criterionsAmount" value="0" />
-    <input type="button" value="show" onClick="criterionsEnter()">
+    <input type="text" id="criterionsAmount" value="Количество критериев" />
+    <input type="button" value="Создать" onClick="criterionsEnter()">
     </form>
-</center>    
+    </div>   
 </body>
 </html>
