@@ -29,3 +29,15 @@ input[type="text"]{
     padding:0.5%;
     margin: 0.5%;
 }
+
+table{
+    border: 1px solid green;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+td{
+    background: #A0F34D;
+    border: 1px solid green;
+    text-align: center;
+
+}

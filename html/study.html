@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Decision</title>
+    <link rel="stylesheet" href="../style.css">
+        <script type="text/javascript">
+        let criterions = new Array();
+        let alternatives = new Array();
+        let criterionWeights = new Array();
+        let alternativeCompare = new Array();
+        let resaltTable = new Array();
+        let rez=new Array();
+
+        function criterionsEnter() {
+            var criterionsAmount= parseInt(document.getElementById("criterionsAmount").value, 10);
+            
+            //create buttons for criterias. to choose what kind are they
+            for (i=0;i<criterionsAmount;i++){
+                criterions[i]=new Map();
+                criterions[i].set("name",prompt("Критерий","Название"));
+                criterionWeights[i]=parseFloat(prompt("Вес критерия","значение"));
+                
+                var newDiv = document.createElement("div");
+                var str=criterions[i].get("name");
+                newDiv.innerHTML ='<h1>'+str+'</h1>';
+                newDiv.setAttribute('id','div'+str);
+                document.body.appendChild(newDiv);
+
+                var newButtonL = document.createElement("input");
+                newButtonL.setAttribute('type','button');
+                newButtonL.setAttribute('id','funcChoosing'+str);
+                newButtonL.setAttribute('value','Функция');
+                newButtonL.setAttribute('onClick','funcСriterionsChoosing("'+str+'",'+i+')');
+
+                var newButtonR = document.createElement("input");
+                newButtonR.setAttribute('type','button');
+                newButtonR.setAttribute('id','tablChoosing'+str);
+                newButtonR.setAttribute('value','Таблица');
+                newButtonR.setAttribute('onClick','tablСriterionsChoosing("'+str+'",'+i+')');
+                
+                var newButtonC = document.createElement("input");
+                newButtonC.setAttribute('type','button');
+                newButtonC.setAttribute('id','simpChoosing'+str);
+                newButtonC.setAttribute('value','Простое задание');
+                newButtonC.setAttribute('onClick','simpСriterionsChoosing("'+str+'",'+i+')');
+
+                var newForm=document.createElement("form");
+                newForm.setAttribute('id','form'+str);
+                newForm.appendChild(newButtonL);
+                newForm.appendChild(newButtonR);
+                newForm.appendChild(newButtonC);
+                document.body.appendChild(newForm);
+                }
+                
+            var newDiv = document.createElement("div");
+            newDiv.setAttribute('id','altsDiv');
+            var newButtonA = document.createElement("input");
+            newButtonA.setAttribute('type','button');
+            newButtonA.setAttribute('id','alts');
+            newButtonA.setAttribute('value','Ввести альтернативы');
+            newButtonA.setAttribute('onClick','altern('+i+')');            
+            document.body.appendChild(newDiv);            
+            document.getElementById("altsDiv").appendChild(newButtonA);
+
+            return new_criterionsAmount;
+            }
+
+            //DONE choosing kind of functions
+            function funcСriterionsChoosing(str,i){
+                criterions[i].set("criterionType","func");
+
+                var newDivO = document.createElement("div");
+                newDivO.innerHTML='<img src="../img/one.jpg"><br>';
+                newDivO.setAttribute("id","funcO"+str);
+                newButtonO = document.createElement("input");
+                newButtonO.setAttribute('type','button');
+                newButtonO.setAttribute('value','Возрастание');
+                newButtonO.setAttribute('onClick','funcСriterionsCreationO("'+str+'",'+i+')');
+                newDivO.appendChild(newButtonO);
+
+                var newDivTw = document.createElement("div");
+                newDivTw.innerHTML='<img src="../img/two.jpg"><br>';
+                newDivTw.setAttribute("id","funcTw"+str);
+                newButtonTw = document.createElement("input");
+                newButtonTw.setAttribute('type','button');
+                newButtonTw.setAttribute('value','Убывание');
+                newButtonTw.setAttribute('onClick','funcСriterionsCreationTw("'+str+'",'+i+')');
+                newDivTw.appendChild(newButtonTw);
+                                
+                var newDivTh = document.createElement("div");
+                newDivTh.innerHTML='<img src="../img/three.jpg"><br>';
+                newDivTh.setAttribute("id","funcTh"+str);
+                newButtonTh = document.createElement("input");
+                newButtonTh.setAttribute('type','button');
+                newButtonTh.setAttribute('value','Комбо');
+                newButtonTh.setAttribute('onClick','funcСriterionsCreationTh("'+str+'",'+i+')');
+                newDivTh.appendChild(newButtonTh);
+                                
+                document.getElementById("funcChoosing"+str).replaceWith(newDivO);
+                document.getElementById("tablChoosing"+str).replaceWith(newDivTw);
+                document.getElementById("simpChoosing"+str).replaceWith(newDivTh);
+            }
+            
+            //DONE filling data for one-side functionO criterias
+            function funcСriterionsCreationO(str, i){                
+                criterions[i].set("criterionType","funcO");
+                var newDiv = document.createElement("div");
+                newDiv.innerHTML='<img src="../img/onefill.jpg"><br>';
+                newDiv.setAttribute("id","funcFilling"+str);
+
+                innerHtmlText='<input type="text" id="'+str+'x0" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x1" value="1">';
+                newDiv.innerHTML+=innerHtmlText;
+
+                newButtonT = document.createElement("input");
+                newButtonT.setAttribute('type','button');
+                newButtonT.setAttribute('value','Сохранить');
+                newButtonT.setAttribute('onClick','funcСriterionsSaveO("'+str+'",'+i+')');
+                newDiv.appendChild(newButtonT);
+            
+                document.getElementById("funcO"+str).replaceWith(newDiv);
+                document.getElementById("funcTh"+str).remove();
+                document.getElementById("funcTw"+str).remove();
+
+            }
+
+            //DONE filling data for one-side functionTw criterias
+            function funcСriterionsCreationTw(str, i){                
+                criterions[i].set("criterionType","funcTw");
+                var newDiv = document.createElement("div");
+                newDiv.innerHTML='<img src="../img/twofill.jpg"><br>';
+                newDiv.setAttribute("id","funcFilling"+str);
+
+                innerHtmlText='<input type="text" id="'+str+'x0" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x1" value="1">';
+                newDiv.innerHTML+=innerHtmlText;
+
+                newButtonT = document.createElement("input");
+                newButtonT.setAttribute('type','button');
+                newButtonT.setAttribute('value','Сохранить');
+                newButtonT.setAttribute('onClick','funcСriterionsSaveTw("'+str+'",'+i+')');
+                newDiv.appendChild(newButtonT);
+            
+                document.getElementById("funcO"+str).replaceWith(newDiv);
+                document.getElementById("funcTh"+str).remove();
+                document.getElementById("funcTw"+str).remove();
+
+            }
+
+            //DONE filling data for both-side function criterias
+            function funcСriterionsCreationTh(str, i){                
+                criterions[i].set("criterionType","funcTh");
+                var newDiv = document.createElement("div");
+                newDiv.innerHTML='<img src="../img/threefill.jpg"><br>';
+                newDiv.setAttribute("id","funcFilling"+str);
+
+                innerHtmlText='<input type="text" id="'+str+'x0" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x1" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x2" value="1">';
+                innerHtmlText+='<input type="text" id="'+str+'x3" value="1">';
+                newDiv.innerHTML+=innerHtmlText;
+
+                newButtonT = document.createElement("input");
+                newButtonT.setAttribute('type','button');
+                newButtonT.setAttribute('value','Сохранить');
+                newButtonT.setAttribute('onClick','funcСriterionsSaveTh("'+str+'",'+i+')');
+                newDiv.appendChild(newButtonT);
+              
+                document.getElementById("funcO"+str).replaceWith(newDiv);
+                document.getElementById("funcTh"+str).remove();
+                document.getElementById("funcTw"+str).remove();
+
+            }
+
+            //DONE saving data for one-side functions
+            function funcСriterionsSaveO(str,i){
+                let x=new Array(3);
+                for (k=0;k<x.length-1;k++){
+                    x[k]=parseFloat(document.getElementById(str+"x"+k).value);
+                }
+                x[2]=0;
+                criterions[i].set("paramValues",x);
+                document.getElementById("div"+str).remove();
+                document.getElementById("form"+str).remove();
+            }
+
+            //DONE saving data for one-side functions
+            function funcСriterionsSaveTw(str,i){
+                let x=new Array(3);
+                for (k=0;k<x.length-1;k++){
+                    x[k]=parseFloat(document.getElementById(str+"x"+k).value);
+                }
+                x[2]=1;
+                criterions[i].set("paramValues",x);
+                document.getElementById("div"+str).remove();
+                document.getElementById("form"+str).remove();
+            }
+
+            //DONE saving data for both-side functions
+            function funcСriterionsSaveTh(str,i){
+                let x=new Array(4);
+                for (k=0;k<x.length;k++){
+                    x[k]=parseFloat(document.getElementById(str+"x"+k).value);
+                }
+                criterions[i].set("paramValues",x);
+                document.getElementById("div"+str).remove();
+                document.getElementById("form"+str).remove();
+            }
+
+            //DONE creates field for amount and button to submin for criterias as tables
+            function tablСriterionsChoosing(str,i){
+                criterions[i].set("criterionType","table");
+
+                var newDiv=document.createElement("input");
+                newDiv.setAttribute('type','text');
+                newDiv.setAttribute('id','paramsAmountFor'+str);
+                newDiv.setAttribute('value','0');
+                
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','tabl'+str);
+                newButton.setAttribute('value','Количество параметров');
+                newButton.setAttribute('onClick','tablСriterionsCreation("'+str+'",'+i+')');
+                                
+                document.getElementById("form"+str).prepend(newDiv);
+                document.getElementById("funcChoosing"+str).replaceWith(newButton);
+                document.getElementById("tablChoosing"+str).remove();
+                document.getElementById("simpChoosing"+str).remove();
+            }
+
+            //DONE create table for entering params
+            function tablСriterionsCreation(str,i) {
+                var paramsAmount=parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
+                var innerHtmlText='<div>';
+                for (j=0;j<paramsAmount;j++){
+                    innerHtmlText+='<input type="text" id="'+str+"0"+j+'" value="Параметр">';
+                }
+                innerHtmlText+='</div>';
+                for (k=1;k<paramsAmount+1;k++){
+                    innerHtmlText+='<div>';
+                    for (j=0;j<paramsAmount;j++){
+                       innerHtmlText+='<input type="text" id="'+str+k+j+'" value="1">';
+                    }
+                    innerHtmlText+='</div>';
+                }
+           
+                var newButtonR = document.createElement("input");
+                newButtonR.setAttribute('type','button');
+                newButtonR.setAttribute('id','tablSaving'+str);
+                newButtonR.setAttribute('value','Сохранить');
+                newButtonR.setAttribute('onClick','tablСriterionsSave("'+str+'",'+i+','+paramsAmount+')');
+ 
+                var newForm=document.createElement("form");
+                newForm.setAttribute('id',str+"form");
+                newForm.innerHTML=innerHtmlText;
+                document.getElementById("paramsAmountFor"+str).replaceWith(newForm);
+                document.getElementById("tabl"+str).replaceWith(newButtonR);
+
+            }
+
+            //DONE saving users data from tables 
+            function tablСriterionsSave(str,i,j){
+                let temp=new Array(j);
+                let names=new Array(j);
+                for (k=0;k<j;k++){
+                    temp[k]=[];
+                    names[k]=document.getElementById(str+0+k).value;
+                    for (q=1;q<j+1;q++){
+                        temp[k][q-1]=parseInt(document.getElementById(str+q+k).value, 10);
+                    }
+                }
+                criterions[i].set("paramValues",temp);
+                criterions[i].set("paramnames",names);
+
+                document.getElementById("div"+str).remove();
+                document.getElementById("form"+str).remove();
+                document.getElementById('tablSaving'+str).remove();
+
+            }
+
+            //DONE simple criterias
+            function simpСriterionsChoosing(str,i){                
+                criterions[i].set("criterionType","simp");
+
+                var newDiv=document.createElement("input");
+                newDiv.setAttribute('type','text');
+                newDiv.setAttribute('id','paramsAmountFor'+str);
+                newDiv.setAttribute('value','0');
+                
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','simp'+str);
+                newButton.setAttribute('value','Создать');
+                newButton.setAttribute('onClick','simpСriterionsCreation("'+str+'",'+i+')');
+                                
+                document.getElementById("form"+str).prepend(newDiv);
+                document.getElementById("funcChoosing"+str).replaceWith(newButton);
+                document.getElementById("tablChoosing"+str).remove();
+                document.getElementById("simpChoosing"+str).remove();
+            }
+
+            //DONE fields for filling simple
+            function simpСriterionsCreation(str,i){
+                var paramsAmount=parseInt(document.getElementById("paramsAmountFor"+str).value, 10);
+                var innerHtmlText='';
+                for (j=0;j<paramsAmount;j++){
+                    innerHtmlText+='<div>';
+                    innerHtmlText+='<input type="text" id="'+str+'Val'+j+'" value="значение">';
+                    innerHtmlText+='<input type="text" id="'+str+'Name'+j+'" value="название">';
+                    innerHtmlText+='</div>';
+                }
+           
+                var newButtonR = document.createElement("input");
+                newButtonR.setAttribute('type','button');
+                newButtonR.setAttribute('id','simpSaving'+str);
+                newButtonR.setAttribute('value','Сохранить');
+                newButtonR.setAttribute('onClick','simpСriterionsSave("'+str+'",'+i+','+paramsAmount+')');
+ 
+                var newForm=document.createElement("form");
+                newForm.setAttribute('id',str+"form");
+                newForm.innerHTML=innerHtmlText;
+                document.getElementById("paramsAmountFor"+str).replaceWith(newForm);
+                document.getElementById("simp"+str).replaceWith(newButtonR);
+            }
+
+            //DONE saving simple data
+            function simpСriterionsSave(str,i,j){
+                let values=new Array(j);
+                let names=new Array(j);
+                for (k=0;k<j;k++){
+                    values[k]=document.getElementById(str+"Val"+k).value;
+                    names[k]=document.getElementById(str+"Name"+k).value;
+                    criterions[i].set(document.getElementById(str+"Name"+k).value,document.getElementById(str+"Val"+k).value);
+                }
+                criterions[i].set("paramNames",names);
+                criterions[i].set("paramValues",values);
+
+                document.getElementById("div"+str).remove();
+                document.getElementById("form"+str).remove();
+                document.getElementById('simpSaving'+str).remove();
+            }
+
+            //DONE entering alts
+            function altern(i){
+                altAmount=parseInt(prompt("Количество альтернатив","0"));
+                for(j=0;j<altAmount;j++){
+                    var newDiv=document.createElement("div");
+                    newDiv.setAttribute("id","alternativeDiv"+j);
+                    newDiv.innerHTML="<h1>Альтернатива "+j+"</h1>";
+
+                    var newForm=document.createElement("form");
+                    newForm.setAttribute("id","alternativeForm"+j);
+
+                    document.body.appendChild(newDiv);
+                    document.getElementById("alternativeDiv"+j).appendChild(newForm);
+
+                    for(k=0;k<i;k++){
+                        var newP=document.createElement("br");
+                        var newField=document.createElement("input");
+                        newField.setAttribute('type','text');
+                        newField.setAttribute('id','alterCrit'+j+k);
+                        newField.setAttribute('value',criterions[k].get("name")+" значение");
+                        document.getElementById("alternativeForm"+j).appendChild(newField);
+                        document.getElementById("alternativeForm"+j).appendChild(newP);
+                    }
+                }
+
+                document.getElementById("mainDiv").remove();
+                document.getElementById("altsDiv").remove();
+                
+
+                var newDiv = document.createElement("div");
+                newDiv.setAttribute('id','altsSavingDiv');
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','altsaving');
+                newButton.setAttribute('value','Сохранить');
+                newButton.setAttribute('onClick','saveAlters("'+altAmount+'",'+i+')');            
+                document.body.appendChild(newDiv);            
+                document.getElementById("altsSavingDiv").appendChild(newButton);
+            }
+
+            //DONE Saving alts
+            function saveAlters(altAmount,i){
+                for (k=0;k<altAmount;k++){
+                    alternatives[k]=new Map();
+                    for(j=0;j<i;j++){
+                        alternatives[k].set(criterions[j].get("name"),document.getElementById('alterCrit'+k+j).value);
+                    }
+                    document.getElementById("alternativeDiv"+k).remove();
+                }
+
+                var newButton = document.createElement("input");
+                newButton.setAttribute('type','button');
+                newButton.setAttribute('id','rangeAlts');
+                newButton.setAttribute('value','Выбрать наилучшую альтернативу');
+                newButton.setAttribute('onClick','range()');
+
+                document.getElementById("altsaving").replaceWith(newButton);
+            }
+
+            //DONE table transform
+            function tableNorm(){
+                for (i=0;i<criterions.length;i++){
+                    if (criterions[i].get("criterionType")=="table"){
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            for (k=0;k<criterions[i].get("paramValues").length;k++){
+                                if((criterions[i].get("paramValues"))[k][j]>1){
+                                    (criterions[i].get("paramValues"))[j][k]=1/(criterions[i].get("paramValues"))[k][j]
+                                }
+                            }
+                        }
+
+                        var temp=new Array();
+                        sum=0;
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            temp[j]=1;
+                            for (k=0;k<criterions[i].get("paramValues").length;k++){
+                                temp[j]*=(criterions[i].get("paramValues"))[k][j];
+                            }
+                            temp[j]=Math.pow(temp[j],(1/criterions[i].get("paramValues").length));
+                            sum+=temp[j];
+                        }
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            temp[j]=(temp[j]/sum);
+                        }
+                        maxT=Math.max.apply(null,temp);
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            temp[j]=(temp[j]/maxT);
+                        }
+
+                        for (j=0;j<criterions[i].get("paramValues").length;j++){
+                            //alert((criterions[i].get("paramnames"))[j]);
+                            criterions[i].set((criterions[i].get("paramnames"))[j],temp[j]);
+                        }
+                    }
+                }
+
+            }
+        
+            //TODO func counting
+            function altNorm(){
+                for (i=0;i<alternatives.length;i++){
+                    alternativeCompare[i]=new Array();
+                    resaltTable[i]=new Array();
+                }
+
+                //Filling result array
+                for (j=0;j<criterions.length;j++){
+                    if (criterions[j].get("criterionType")=="funcO"){
+                        for (i=0;i<alternatives.length;i++){
+                            cname=criterions[j].get("name");
+                            avalue=alternatives[i].get(cname);
+                            //alert(cname+" - " + avalue + " - " + criterions[j].get("paramValues"));
+                            if (avalue<(criterions[j].get("paramValues")[0])){
+                                //alert(avalue+" - 0");
+                                alternativeCompare[i][j]=0;
+                            } else if (avalue>(criterions[j].get("paramValues")[1])){
+                               // alert(avalue+" - 1");
+                                alternativeCompare[i][j]=1;
+                            } else {
+                                x=criterions[j].get("paramValues");
+                                newavalue=((avalue-x[0]*(1-0)))/(x[1]-x[0]);
+                               // alert(avalue+" - "+x+" - "+newavalue);
+                                alternativeCompare[i][j]=newavalue;
+                            }
+                        }
+                    } else if (criterions[j].get("criterionType")=="funcTw"){
+                        for (i=0;i<alternatives.length;i++){
+                            cname=criterions[j].get("name");
+                            avalue=alternatives[i].get(cname);
+                            //alert(cname+" - " + avalue + " - " + criterions[j].get("paramValues"));
+                            if (avalue<(criterions[j].get("paramValues")[0])){
+                               // alert(avalue+" - 1");
+                                alternativeCompare[i][j]=1;
+                            } else if (avalue>(criterions[j].get("paramValues")[1])){
+                               // alert(avalue+" - 0");
+                                alternativeCompare[i][j]=0;
+                            } else {
+                                x=criterions[j].get("paramValues");
+                                newavalue=(((avalue-x[0])*(0-1))/(x[1]-x[0]))+1;
+                               // alert(avalue+" - "+x+" - "+newavalue);
+                                alternativeCompare[i][j]=newavalue;
+                            }
+                        }
+                    } else if (criterions[j].get("criterionType")=="funcTh"){
+                        for (i=0;i<alternatives.length;i++){
+                            cname=criterions[j].get("name");
+                            avalue=alternatives[i].get(cname);
+                            //alert(cname+" - " + avalue + " - " + criterions[j].get("paramValues"));
+                            if ((avalue<(criterions[j].get("paramValues")[0])) || (avalue>(criterions[j].get("paramValues")[3]))){
+                                //alert(avalue+" - 0");
+                                alternativeCompare[i][j]=parseInt(0);
+                            } else if ((avalue<(criterions[j].get("paramValues")[2])) && (avalue>(criterions[j].get("paramValues")[1]))){
+                                //alert(avalue+" - 1");
+                                alternativeCompare[i][j]=parseInt(1);
+                            } else if (avalue<=(criterions[j].get("paramValues")[1])) {
+                                x=criterions[j].get("paramValues");
+                                newavalue=((avalue-x[0]*(1-0)))/(x[1]-x[0]);
+                                //alert(avalue+" - "+x+" - "+newavalue);
+                                alternativeCompare[i][j]=newavalue;
+                            } else {
+                                x=criterions[j].get("paramValues");
+                                newavalue=(((avalue-x[2])*(0-1))/(x[3]-x[2]))+1;
+                                alert(avalue+" - "+x+" - "+newavalue);
+                                alternativeCompare[i][j]=newavalue;
+                            }
+                        }
+                    } else {
+                        for (i=0;i<alternatives.length;i++){
+                            cname=criterions[j].get("name");
+                            value=alternatives[i].get(cname);
+                            avalue=criterions[j].get(value);
+
+                            //alert(i+" - table/simp - "+avalue);
+                            alternativeCompare[i][j]=avalue;
+                        }
+                    }
+
+                    for (i=0;i<alternatives.length;i++){
+                        //alert("el: "+alternativeCompare[i][j]+" - we: "+criterionWeights[j]+" - rez:"+alternativeCompare[i][j]*criterionWeights[j]);
+                        resaltTable[i][j]=alternativeCompare[i][j]*criterionWeights[j];
+                    }
+                }
+                
+                var maxI=0;
+                var maxV=0;
+                for (i=0;i<alternatives.length;i++){
+                    rez[i]=0;
+                    for (j=0;j<criterions.length;j++){
+                        rez[i]+=resaltTable[i][j];
+                    }
+                    if (maxV<rez[i]){
+                        maxV=rez[i];
+                        maxI=i;
+                    }
+                }
+                return maxI;
+            }
+            
+            //TODO range alternatives
+            function range(){
+                tableNorm();
+                var bestI=altNorm();
+                //alert(bestI);
+                //document.getElementById("altsSavingDiv").remove();
+                document.getElementById("rangeAlts").remove();
+                var newField = document.createElement("div");
+                newField.innerHTML='<h1>Лучшая альтернатива</h1>';
+                for(i=0;i<criterions.length;i++){
+                    var critName=criterions[i].get("name");
+                    var critValue=alternatives[bestI].get(critName);
+                    
+                    newField.innerHTML+='<h3>'+critName+' = '+critValue+'</h3>';
+                }
+                document.body.appendChild(newField);
+                showTables();
+            }
+
+            function showTables(){                
+                var newField = document.createElement("div");
+                innerHtmlText='<h1>Входные данные</h1>';
+                innerHtmlText+='<center><table><tbody><tr><td><span><b>Критерий</h3></td>';
+                innerHtmlText+='<td><span><b>Вес</b></span></td>';
+                for (j=0;j<alternatives.length;j++){
+                    innerHtmlText+='<td><span><b>Альтернатива '+j+'</b></span></td>';
+                }
+                innerHtmlText+='</tr>';
+                alert(innerHtmlText);
+                for(i=0;i<criterions.length;i++){
+                    var critName=criterions[i].get("name");
+                    innerHtmlText+='<tr><td><span><b>'+critName+'</b></span></td>';
+                    innerHtmlText+='<td><span><b>'+criterionWeights[i]+'</b></span></td>';
+                    for (j=0;j<alternatives.length;j++){
+                        var critValue=alternatives[j].get(critName);
+                        innerHtmlText+='<td><span>'+critValue+'</span></td>';
+                    }
+                    innerHtmlText+='</tr>';
+                }
+                innerHtmlText+='</tbody></table></center>';
+
+                
+                innerHtmlText+='<h1>Промежуточные данные</h1>';
+                innerHtmlText+='<h3>(после нормировки)</h3>';
+                innerHtmlText+='<center><table><tbody><tr><td><span><b>Критерий</h3></td>';
+                innerHtmlText+='<td><span><b>Вес</b></span></td>';
+                for (j=0;j<alternatives.length;j++){
+                    innerHtmlText+='<td><span><b>Альтернатива '+j+'</b></span></td>';
+                }
+                innerHtmlText+='</tr>';
+                alert(innerHtmlText);
+                for(i=0;i<criterions.length;i++){
+                    var critName=criterions[i].get("name");
+                    innerHtmlText+='<tr><td><span><b>'+critName+'</b></span></td>';
+                    innerHtmlText+='<td><span><b>'+criterionWeights[i]+'</b></span></td>';
+                    for (j=0;j<alternatives.length;j++){
+                        var critValue=alternativeCompare[j][i];
+                        innerHtmlText+='<td><span>'+critValue+'</span></td>';
+                    }
+                    innerHtmlText+='</tr>';
+                }
+                innerHtmlText+='</tbody></table></center>';
+
+                innerHtmlText+='<h1>Данные с учетом весов критериев</h1>';
+                innerHtmlText+='<center><table><tbody><tr><td><span><b>Критерий</h3></td>';
+                for (j=0;j<alternatives.length;j++){
+                    innerHtmlText+='<td><span><b>Альтернатива '+j+'</b></span></td>';
+                }
+                innerHtmlText+='</tr>';
+                alert(innerHtmlText);
+                for(i=0;i<criterions.length;i++){
+                    var critName=criterions[i].get("name");
+                    innerHtmlText+='<tr><td><span><b>'+critName+'</b></span></td>';
+                    for (j=0;j<alternatives.length;j++){
+                        var critValue=resaltTable[j][i];
+                        innerHtmlText+='<td><span>'+critValue+'</span></td>';
+                    }
+                    innerHtmlText+='</tr>';
+                }
+                innerHtmlText+='<tr><td><span><b>Вес альтернативы</b></span></td>';
+                for(i=0;i<alternatives.length;i++){
+                    innerHtmlText+='<td><span><b>'+rez[i]+'</b></span></td>';
+                }
+                innerHtmlText+='</tr>';
+                innerHtmlText+='</tbody></table></center>';
+
+                newField.innerHTML=innerHtmlText;
+                document.body.appendChild(newField);
+            }
+
+        </script>
+        <style>
+        </style>
+    </head>
+    <body><div id="mainDiv">
+    <form name="form" id="criterionsForm">
+    <input type="text" id="criterionsAmount" value="Количество критериев" />
+    <input type="button" value="Создать" onClick="criterionsEnter()">
+    </form>
+    </div>   
+</body>
+</html>
