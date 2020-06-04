@@ -11,7 +11,43 @@
 	(object Attribute
 	    tool       	"Java"
 	    name       	"IDE"
-	    value      	"Internal Editor"))
+	    value      	"Internal Editor")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName3"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText3"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply3"
+	    value      	""))
     quid       	"5ED75D1C032F"
     enforceClosureAutoLoad 	FALSE
     defaults   	(object defaults
@@ -56,13 +92,72 @@
 	    (object UseCase "Ввести значения альтернатив"
 		quid       	"5ED7C7F00170")
 	    (object UseCase "Выбрать форму ввода критериев"
-		quid       	"5ED7C8480002")
-	    (object UseCase "Выбрать вид функции"
-		quid       	"5ED7C8580083")
+		quid       	"5ED7C8480002"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5ED88783021F"
+			supplier   	"Use Case View::Выбрать ф-цию"
+			quidu      	"5ED7C8580083")
+		    (object Dependency_Relationship
+			quid       	"5ED887AF02B4"
+			supplier   	"Use Case View::Выбрать таблицу"
+			quidu      	"5ED887A70384")
+		    (object Dependency_Relationship
+			quid       	"5ED887BA01BA"
+			supplier   	"Use Case View::Выбрать массив"
+			quidu      	"5ED887B101E9")))
+	    (object UseCase "Выбрать ф-цию"
+		quid       	"5ED7C8580083"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5ED886E500E2"
+			supplier   	"Use Case View::Выбрать убывающую ф-цию"
+			quidu      	"5ED886AC0143")
+		    (object Dependency_Relationship
+			quid       	"5ED887250221"
+			supplier   	"Use Case View::Выбрать возрастающую ф-цию"
+			quidu      	"5ED8870A005C")
+		    (object Dependency_Relationship
+			quid       	"5ED8873F00B0"
+			supplier   	"Use Case View::Выбрать комбинированную ф-цию"
+			quidu      	"5ED887290217")))
 	    (object UseCase "Выбрать режим вывода результата"
 		quid       	"5ED7C862008D")
 	    (object UseCase "Ввести параметры критериев"
 		quid       	"5ED7C87D0197")
+	    (object UseCase "Вывести результаты на экран"
+		quid       	"5ED8862B011E"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5ED8886002B0"
+			supplier   	"Use Case View::Вывести наилуч. алтернативу и промежуточные расчеты"
+			quidu      	"5ED8884701F7")
+		    (object Dependency_Relationship
+			quid       	"5ED88862035C"
+			supplier   	"Use Case View::Вывести наилучшую только альтернативу"
+			quidu      	"5ED8882E02BB")))
+	    (object UseCase "Сохранить пользовательские критерии"
+		quid       	"5ED8864002C5")
+	    (object UseCase "Сохранить альтенативы"
+		quid       	"5ED88692027A")
+	    (object UseCase "Выбрать убывающую ф-цию"
+		quid       	"5ED886AC0143")
+	    (object UseCase "Выбрать возрастающую ф-цию"
+		quid       	"5ED8870A005C")
+	    (object UseCase "Выбрать комбинированную ф-цию"
+		quid       	"5ED887290217")
+	    (object UseCase "Выбрать таблицу"
+		quid       	"5ED887A70384")
+	    (object UseCase "Выбрать массив"
+		quid       	"5ED887B101E9")
+	    (object UseCase "Привести данные к безразмерному виду"
+		quid       	"5ED887F60158")
+	    (object UseCase "Выбрать наилучшую альтернативу"
+		quid       	"5ED8881A0291")
+	    (object UseCase "Вывести наилучшую только альтернативу"
+		quid       	"5ED8882E02BB")
+	    (object UseCase "Вывести наилуч. алтернативу и промежуточные расчеты"
+		quid       	"5ED8884701F7")
 	    (object Association "$UNNAMED$0"
 		quid       	"5ED7C90E02D8"
 		roles      	(list role_list
@@ -146,19 +241,1444 @@
 		    (object Role "$UNNAMED$20"
 			quid       	"5ED7C91E036F"
 			supplier   	"Use Case View::Пользователь"
-			quidu      	"5ED7C7AC02F1"))))
+			quidu      	"5ED7C7AC02F1")))
+	    (object Association "$UNNAMED$21"
+		quid       	"5ED886240242"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$22"
+			quid       	"5ED886270261"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$23"
+			quid       	"5ED886270271"
+			supplier   	"Use Case View::Выбрать режим вывода результата"
+			quidu      	"5ED7C862008D")))
+	    (object Association "$UNNAMED$24"
+		quid       	"5ED886600255"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$25"
+			quid       	"5ED886610216"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$26"
+			quid       	"5ED886610226"
+			supplier   	"Use Case View::Создать критерии"
+			quidu      	"5ED7C7CB0288")))
+	    (object Association "$UNNAMED$27"
+		quid       	"5ED8866400AF"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$28"
+			quid       	"5ED886640235"
+			supplier   	"Use Case View::Сохранить пользовательские критерии"
+			quidu      	"5ED8864002C5"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$29"
+			quid       	"5ED886640245"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272")))
+	    (object Association "$UNNAMED$30"
+		quid       	"5ED8868600F1"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$31"
+			quid       	"5ED886870045"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$32"
+			quid       	"5ED886870054"
+			supplier   	"Use Case View::Ввести веса критериев"
+			quidu      	"5ED7C7C201F1")))
+	    (object Association "$UNNAMED$33"
+		quid       	"5ED8868B02AB"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$34"
+			quid       	"5ED8868C01B1"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$35"
+			quid       	"5ED8868C01D1"
+			supplier   	"Use Case View::Ввести параметры критериев"
+			quidu      	"5ED7C87D0197")))
+	    (object Association "$UNNAMED$36"
+		quid       	"5ED886A403CE"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$37"
+			quid       	"5ED886A502E4"
+			supplier   	"Use Case View::Сохранить альтенативы"
+			quidu      	"5ED88692027A"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$38"
+			quid       	"5ED886A502E6"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272")))
+	    (object Association "$UNNAMED$39"
+		quid       	"5ED886C9018F"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$40"
+			quid       	"5ED886C90364"
+			supplier   	"Use Case View::Вывести результаты на экран"
+			quidu      	"5ED8862B011E"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$41"
+			quid       	"5ED886C90366"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272")))
+	    (object Association "$UNNAMED$42"
+		quid       	"5ED886CB03C2"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$43"
+			quid       	"5ED886CD0106"
+			supplier   	"Use Case View::Пользователь"
+			quidu      	"5ED7C7AC02F1"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$44"
+			quid       	"5ED886CD0115"
+			supplier   	"Use Case View::Вывести результаты на экран"
+			quidu      	"5ED8862B011E")))
+	    (object Association "$UNNAMED$45"
+		quid       	"5ED886DF009F"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$46"
+			quid       	"5ED886E0014A"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$47"
+			quid       	"5ED886E0016A"
+			supplier   	"Use Case View::Ввести значения альтернатив"
+			quidu      	"5ED7C7F00170")))
+	    (object Association "$UNNAMED$48"
+		quid       	"5ED886E7001D"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$49"
+			quid       	"5ED886E702DC"
+			supplier   	"Use Case View::Выбрать ф-цию"
+			quidu      	"5ED7C8580083"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$50"
+			quid       	"5ED886E702DE"
+			supplier   	"Use Case View::Пользователь"
+			quidu      	"5ED7C7AC02F1")))
+	    (object Association "$UNNAMED$51"
+		quid       	"5ED888070183"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$52"
+			quid       	"5ED88808006A"
+			supplier   	"Use Case View::Привести данные к безразмерному виду"
+			quidu      	"5ED887F60158"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$53"
+			quid       	"5ED88808007A"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272")))
+	    (object Association "$UNNAMED$54"
+		quid       	"5ED8882B002B"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$55"
+			quid       	"5ED8882B020F"
+			supplier   	"Use Case View::Выбрать наилучшую альтернативу"
+			quidu      	"5ED8881A0291"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$56"
+			quid       	"5ED8882B0211"
+			supplier   	"Use Case View::Система"
+			quidu      	"5ED7C9230272"))))
+	statemachine 	(object State_Machine "State/Activity Model"
+	    quid       	"5ED8897601D7"
+	    states     	(list States
+		(object State "$UNNAMED$57"
+		    quid       	"5ED889CC00D8"
+		    type       	"StartState")
+		(object ActivityState "Ввод количества критериев"
+		    quid       	"5ED889D300DC")
+		(object ActivityState "Вывод полей для заполнеия названийкритериев"
+		    quid       	"5ED88A0B0071")
+		(object ActivityState "Заполнение названий и весов критериев"
+		    quid       	"5ED88A38014B")
+		(object ActivityState "Вывод книпок выбора формы ввода"
+		    quid       	"5ED88A4F0383")
+		(object Decision "Выбор формы ввода"
+		    quid       	"5ED88A7102E2")
+		(object SynchronizationState "$UNNAMED$58"
+		    quid       	"5ED88A8A00A6")
+		(object ActivityState "Ввод функцией"
+		    quid       	"5ED88A8C0162")
+		(object ActivityState "Ввод массивом"
+		    quid       	"5ED88B1D0225")
+		(object ActivityState "Ввод таблицей"
+		    quid       	"5ED88B23024E")
+		(object Decision "Выбор функции"
+		    quid       	"5ED88BF10174")
+		(object ActivityState "Ввод возрастающей функцией"
+		    quid       	"5ED88C8C0079")
+		(object ActivityState "Ввод убывающей функцией"
+		    quid       	"5ED88CA40055")
+		(object ActivityState "Ввод сложной функцией"
+		    quid       	"5ED88CB30283")
+		(object ActivityState "Ввод критериев"
+		    quid       	"5ED88D6402F2")
+		(object ActivityState "Сохранение критериев"
+		    quid       	"5ED88D8003E1")
+		(object ActivityState "Ввод кол-ва альтернатив"
+		    quid       	"5ED88D9401E8")
+		(object ActivityState "Ввод альтернатив"
+		    quid       	"5ED88DAB0311")
+		(object ActivityState "Сохранение альтернатив"
+		    quid       	"5ED88EAF0006")
+		(object ActivityState "Приведение альтернатив к безразмерному виду"
+		    quid       	"5ED88ED70104")
+		(object ActivityState "Суммирование оценокальтернатив с учетом весов критериев"
+		    quid       	"5ED88F160089")
+		(object ActivityState "Ввывод результата на экран"
+		    quid       	"5ED88F4400E8")
+		(object ActivityState "Просмотр результата"
+		    quid       	"5ED88F50002C")
+		(object State "$UNNAMED$59"
+		    quid       	"5ED88F6F0093"
+		    type       	"EndState"))
+	    partitions 	(list Partitions
+		(object Partition "Пользователь"
+		    quid       	"5ED8899E014F"
+		    persistence 	"Transient"
+		    creationObj 	FALSE
+		    multi      	FALSE)
+		(object Partition "Система"
+		    quid       	"5ED889C202CB"
+		    persistence 	"Transient"
+		    creationObj 	FALSE
+		    multi      	FALSE))
+	    objects    	(list Objects)
+	    transitions 	(list transition_list
+		(object State_Transition
+		    quid       	"5ED88A0702AE"
+		    supplier   	"Use Case View::State/Activity Model::Ввод количества критериев"
+		    supplier_quidu 	"5ED889D300DC"
+		    client     	"$UNNAMED$57"
+		    client_quidu 	"5ED889CC00D8"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88A0702B1"))
+		(object State_Transition
+		    quid       	"5ED88A250066"
+		    supplier   	"Use Case View::State/Activity Model::Вывод полей для заполнеия названийкритериев"
+		    supplier_quidu 	"5ED88A0B0071"
+		    client     	"Use Case View::State/Activity Model::Ввод количества критериев"
+		    client_quidu 	"5ED889D300DC"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88A250069"))
+		(object State_Transition
+		    quid       	"5ED88A64017C"
+		    supplier   	"Use Case View::State/Activity Model::Заполнение названий и весов критериев"
+		    supplier_quidu 	"5ED88A38014B"
+		    client     	"Use Case View::State/Activity Model::Вывод полей для заполнеия названийкритериев"
+		    client_quidu 	"5ED88A0B0071"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88A64017F"))
+		(object State_Transition
+		    quid       	"5ED88A680087"
+		    supplier   	"Use Case View::State/Activity Model::Вывод книпок выбора формы ввода"
+		    supplier_quidu 	"5ED88A4F0383"
+		    client     	"Use Case View::State/Activity Model::Заполнение названий и весов критериев"
+		    client_quidu 	"5ED88A38014B"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88A68008A"))
+		(object State_Transition
+		    quid       	"5ED88B350190"
+		    supplier   	"Use Case View::State/Activity Model::Выбор формы ввода"
+		    supplier_quidu 	"5ED88A7102E2"
+		    client     	"Use Case View::State/Activity Model::Вывод книпок выбора формы ввода"
+		    client_quidu 	"5ED88A4F0383"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88B350193"))
+		(object State_Transition
+		    quid       	"5ED88B38017E"
+		    supplier   	"Use Case View::State/Activity Model::Ввод функцией"
+		    supplier_quidu 	"5ED88A8C0162"
+		    client     	"Use Case View::State/Activity Model::Выбор формы ввода"
+		    client_quidu 	"5ED88A7102E2"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88B380181"))
+		(object State_Transition
+		    quid       	"5ED88B3A01CC"
+		    supplier   	"Use Case View::State/Activity Model::Ввод таблицей"
+		    supplier_quidu 	"5ED88B23024E"
+		    client     	"Use Case View::State/Activity Model::Выбор формы ввода"
+		    client_quidu 	"5ED88A7102E2"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88B3A01CF"))
+		(object State_Transition
+		    quid       	"5ED88B3D00F7"
+		    supplier   	"Use Case View::State/Activity Model::Ввод массивом"
+		    supplier_quidu 	"5ED88B1D0225"
+		    client     	"Use Case View::State/Activity Model::Выбор формы ввода"
+		    client_quidu 	"5ED88A7102E2"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88B3D00FA"))
+		(object State_Transition
+		    quid       	"5ED88C0200FD"
+		    supplier   	"Use Case View::State/Activity Model::Выбор функции"
+		    supplier_quidu 	"5ED88BF10174"
+		    client     	"Use Case View::State/Activity Model::Ввод функцией"
+		    client_quidu 	"5ED88A8C0162"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88C020100"))
+		(object State_Transition
+		    quid       	"5ED88CCB0188"
+		    supplier   	"Use Case View::State/Activity Model::Ввод убывающей функцией"
+		    supplier_quidu 	"5ED88CA40055"
+		    client     	"Use Case View::State/Activity Model::Выбор функции"
+		    client_quidu 	"5ED88BF10174"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88CCB018B"))
+		(object State_Transition
+		    quid       	"5ED88CCD03D2"
+		    supplier   	"Use Case View::State/Activity Model::Ввод сложной функцией"
+		    supplier_quidu 	"5ED88CB30283"
+		    client     	"Use Case View::State/Activity Model::Выбор функции"
+		    client_quidu 	"5ED88BF10174"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88CCD03D5"))
+		(object State_Transition
+		    quid       	"5ED88CD0029A"
+		    supplier   	"Use Case View::State/Activity Model::Ввод возрастающей функцией"
+		    supplier_quidu 	"5ED88C8C0079"
+		    client     	"Use Case View::State/Activity Model::Выбор функции"
+		    client_quidu 	"5ED88BF10174"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88CD0029D"))
+		(object State_Transition
+		    quid       	"5ED88CE30311"
+		    supplier   	"$UNNAMED$58"
+		    supplier_quidu 	"5ED88A8A00A6"
+		    client     	"Use Case View::State/Activity Model::Ввод таблицей"
+		    client_quidu 	"5ED88B23024E"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88CE30314"))
+		(object State_Transition
+		    quid       	"5ED88CF300B6"
+		    supplier   	"$UNNAMED$58"
+		    supplier_quidu 	"5ED88A8A00A6"
+		    client     	"Use Case View::State/Activity Model::Ввод массивом"
+		    client_quidu 	"5ED88B1D0225"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88CF300B9"))
+		(object State_Transition
+		    quid       	"5ED88CF601FF"
+		    supplier   	"$UNNAMED$58"
+		    supplier_quidu 	"5ED88A8A00A6"
+		    client     	"Use Case View::State/Activity Model::Ввод возрастающей функцией"
+		    client_quidu 	"5ED88C8C0079"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88CF60202"))
+		(object State_Transition
+		    quid       	"5ED88CFB00EE"
+		    supplier   	"$UNNAMED$58"
+		    supplier_quidu 	"5ED88A8A00A6"
+		    client     	"Use Case View::State/Activity Model::Ввод убывающей функцией"
+		    client_quidu 	"5ED88CA40055"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88CFB00F1"))
+		(object State_Transition
+		    quid       	"5ED88CFF0056"
+		    supplier   	"$UNNAMED$58"
+		    supplier_quidu 	"5ED88A8A00A6"
+		    client     	"Use Case View::State/Activity Model::Ввод сложной функцией"
+		    client_quidu 	"5ED88CB30283"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88CFF0059"))
+		(object State_Transition
+		    quid       	"5ED88D7F00B4"
+		    supplier   	"Use Case View::State/Activity Model::Ввод критериев"
+		    supplier_quidu 	"5ED88D6402F2"
+		    client     	"$UNNAMED$58"
+		    client_quidu 	"5ED88A8A00A6"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88D7F00B7"))
+		(object State_Transition
+		    quid       	"5ED88D8D0306"
+		    supplier   	"Use Case View::State/Activity Model::Сохранение критериев"
+		    supplier_quidu 	"5ED88D8003E1"
+		    client     	"Use Case View::State/Activity Model::Ввод критериев"
+		    client_quidu 	"5ED88D6402F2"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88D8D0309"))
+		(object State_Transition
+		    quid       	"5ED88D980326"
+		    supplier   	"Use Case View::State/Activity Model::Ввод кол-ва альтернатив"
+		    supplier_quidu 	"5ED88D9401E8"
+		    client     	"Use Case View::State/Activity Model::Сохранение критериев"
+		    client_quidu 	"5ED88D8003E1"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88D980329"))
+		(object State_Transition
+		    quid       	"5ED88DDE01FB"
+		    supplier   	"Use Case View::State/Activity Model::Ввод альтернатив"
+		    supplier_quidu 	"5ED88DAB0311"
+		    client     	"Use Case View::State/Activity Model::Ввод кол-ва альтернатив"
+		    client_quidu 	"5ED88D9401E8"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88DDE01FE"))
+		(object State_Transition
+		    quid       	"5ED88EBF020F"
+		    supplier   	"Use Case View::State/Activity Model::Сохранение альтернатив"
+		    supplier_quidu 	"5ED88EAF0006"
+		    client     	"Use Case View::State/Activity Model::Ввод альтернатив"
+		    client_quidu 	"5ED88DAB0311"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88EBF0212"))
+		(object State_Transition
+		    quid       	"5ED88F3E023B"
+		    supplier   	"Use Case View::State/Activity Model::Приведение альтернатив к безразмерному виду"
+		    supplier_quidu 	"5ED88ED70104"
+		    client     	"Use Case View::State/Activity Model::Сохранение альтернатив"
+		    client_quidu 	"5ED88EAF0006"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88F3E023E"))
+		(object State_Transition
+		    quid       	"5ED88F410155"
+		    supplier   	"Use Case View::State/Activity Model::Суммирование оценокальтернатив с учетом весов критериев"
+		    supplier_quidu 	"5ED88F160089"
+		    client     	"Use Case View::State/Activity Model::Приведение альтернатив к безразмерному виду"
+		    client_quidu 	"5ED88ED70104"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88F410158"))
+		(object State_Transition
+		    quid       	"5ED88F640130"
+		    supplier   	"Use Case View::State/Activity Model::Ввывод результата на экран"
+		    supplier_quidu 	"5ED88F4400E8"
+		    client     	"Use Case View::State/Activity Model::Суммирование оценокальтернатив с учетом весов критериев"
+		    client_quidu 	"5ED88F160089"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88F640133"))
+		(object State_Transition
+		    quid       	"5ED88F6701B2"
+		    supplier   	"Use Case View::State/Activity Model::Просмотр результата"
+		    supplier_quidu 	"5ED88F50002C"
+		    client     	"Use Case View::State/Activity Model::Ввывод результата на экран"
+		    client_quidu 	"5ED88F4400E8"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88F6701B5"))
+		(object State_Transition
+		    quid       	"5ED88F7102BB"
+		    supplier   	"$UNNAMED$59"
+		    supplier_quidu 	"5ED88F6F0093"
+		    client     	"Use Case View::State/Activity Model::Просмотр результата"
+		    client_quidu 	"5ED88F50002C"
+		    sendEvent  	(object sendEvent
+			quid       	"5ED88F7102BE")))
+	    objectflows 	(list objectflow_list)
+	    statediagrams 	(list StateDiagrams
+		(object ActivityDiagram "Act004"
+		    quid       	"5ED8897601F6"
+		    title      	"Act004"
+		    zoom       	95
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	2454
+		    items      	(list diagram_item_list
+			(object Swimlane "Пользователь" @1
+			    line_color 	3342489
+			    quidu      	"5ED8899E014F"
+			    width      	1738)
+			(object StateView "StartState" "$UNNAMED$57" @2
+			    Parent_View 	@1
+			    location   	(816, 72)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"5ED889CC00D8"
+			    autoResize 	TRUE)
+			(object ActivityStateView "Ввод количества критериев" @3
+			    Parent_View 	@1
+			    location   	(821, 233)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@3
+				location   	(821, 235)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	326
+				justify    	0
+				label      	"Ввод количества критериев")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED889D300DC"
+			    width      	432
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @4
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88A0702AE"
+			    client     	@2
+			    supplier   	@3
+			    vertices   	(list Points
+				(816, 102)
+				(819, 180))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Заполнение названий и весов критериев" @5
+			    Parent_View 	@1
+			    location   	(808, 368)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@5
+				location   	(808, 370)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	444
+				justify    	0
+				label      	"Заполнение названий и весов критериев")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88A38014B"
+			    width      	550
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object DecisionView "Выбор формы ввода" @6
+			    Parent_View 	@1
+			    location   	(831, 562)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @7
+				Parent_View 	@6
+				location   	(887, 513)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	2
+				max_width  	300
+				justify    	1
+				label      	"Выбор формы ввода"
+				pctDist    	1.000000
+				height     	0
+				orientation 	0)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88A7102E2"
+			    autoResize 	TRUE)
+			(object ActivityStateView "Ввод функцией" @8
+			    Parent_View 	@1
+			    location   	(839, 800)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@8
+				location   	(839, 802)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Ввод функцией")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88A8C0162"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @9
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88B38017E"
+			    client     	@6
+			    supplier   	@8
+			    vertices   	(list Points
+				(831, 599)
+				(836, 747))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Ввод массивом" @10
+			    Parent_View 	@1
+			    location   	(1491, 846)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@10
+				location   	(1491, 849)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Ввод массивом")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88B1D0225"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @11
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88B3D00F7"
+			    client     	@6
+			    supplier   	@10
+			    vertices   	(list Points
+				(906, 562)
+				(1383, 794))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Ввод таблицей" @12
+			    Parent_View 	@1
+			    location   	(247, 872)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@12
+				location   	(247, 875)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Ввод таблицей")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88B23024E"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @13
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88B3A01CC"
+			    client     	@6
+			    supplier   	@12
+			    vertices   	(list Points
+				(756, 562)
+				(332, 820))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Выбор функции" @14
+			    Parent_View 	@1
+			    location   	(829, 987)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @15
+				Parent_View 	@14
+				location   	(885, 938)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	2
+				max_width  	300
+				justify    	1
+				label      	"Выбор функции"
+				pctDist    	1.000000
+				height     	0
+				orientation 	0)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88BF10174"
+			    autoResize 	TRUE)
+			(object TransView "" @16
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88C0200FD"
+			    client     	@8
+			    supplier   	@14
+			    vertices   	(list Points
+				(835, 852)
+				(829, 950))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Ввод возрастающей функцией" @17
+			    Parent_View 	@1
+			    location   	(487, 1043)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@17
+				location   	(487, 1046)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	428
+				justify    	0
+				label      	"Ввод возрастающей функцией")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88C8C0079"
+			    width      	534
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @18
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88CD0029A"
+			    client     	@14
+			    supplier   	@17
+			    vertices   	(list Points
+				(754, 987)
+				(694, 999))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Ввод убывающей функцией" @19
+			    Parent_View 	@1
+			    location   	(788, 1237)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@19
+				location   	(788, 1240)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	340
+				justify    	0
+				label      	"Ввод убывающей функцией")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88CA40055"
+			    width      	446
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @20
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88CCB0188"
+			    client     	@14
+			    supplier   	@19
+			    vertices   	(list Points
+				(829, 1024)
+				(798, 1184))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Ввод сложной функцией" @21
+			    Parent_View 	@1
+			    location   	(1145, 1063)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@21
+				location   	(1145, 1066)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Ввод сложной функцией")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88CB30283"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @22
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88CCD03D2"
+			    client     	@14
+			    supplier   	@21
+			    vertices   	(list Points
+				(904, 987)
+				(999, 1017))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Ввод критериев" @23
+			    Parent_View 	@1
+			    location   	(835, 1833)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@23
+				location   	(835, 1836)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Ввод критериев")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88D6402F2"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Ввод кол-ва альтернатив" @24
+			    Parent_View 	@1
+			    location   	(822, 2006)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@24
+				location   	(822, 2009)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Ввод кол-ва альтернатив")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88D9401E8"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Ввод альтернатив" @25
+			    Parent_View 	@1
+			    location   	(825, 2155)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@25
+				location   	(825, 2158)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Ввод альтернатив")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88DAB0311"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @26
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88DDE01FB"
+			    client     	@24
+			    supplier   	@25
+			    vertices   	(list Points
+				(823, 2058)
+				(823, 2103))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Просмотр результата" @27
+			    Parent_View 	@1
+			    location   	(858, 2711)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@27
+				location   	(858, 2714)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Просмотр результата")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88F50002C"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object StateView "EndState" "$UNNAMED$59" @28
+			    Parent_View 	@1
+			    location   	(858, 2943)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"5ED88F6F0093"
+			    autoResize 	TRUE)
+			(object Swimlane "Система" @29
+			    location   	(1738, 0)
+			    line_color 	3342489
+			    quidu      	"5ED889C202CB"
+			    width      	888)
+			(object ActivityStateView "Вывод полей для заполнеия названийкритериев" @30
+			    Parent_View 	@29
+			    location   	(2196, 197)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@30
+				location   	(2196, 199)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	634
+				justify    	0
+				label      	"Вывод полей для заполнеия названийкритериев")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88A0B0071"
+			    width      	740
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @31
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88A250066"
+			    client     	@3
+			    supplier   	@30
+			    vertices   	(list Points
+				(1013, 227)
+				(1888, 205))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @32
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88A64017C"
+			    client     	@30
+			    supplier   	@5
+			    vertices   	(list Points
+				(1904, 232)
+				(1035, 339))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Вывод книпок выбора формы ввода" @33
+			    Parent_View 	@29
+			    location   	(2265, 431)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@33
+				location   	(2265, 433)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	424
+				justify    	0
+				label      	"Вывод книпок выбора формы ввода")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88A4F0383"
+			    width      	530
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @34
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88A680087"
+			    client     	@5
+			    supplier   	@33
+			    vertices   	(list Points
+				(1045, 378)
+				(2035, 421))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @35
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88B350190"
+			    client     	@33
+			    supplier   	@6
+			    vertices   	(list Points
+				(2040, 451)
+				(906, 562))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Сохранение критериев" @36
+			    Parent_View 	@29
+			    location   	(2161, 1889)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@36
+				location   	(2161, 1892)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Сохранение критериев")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88D8003E1"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @37
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88D8D0306"
+			    client     	@23
+			    supplier   	@36
+			    vertices   	(list Points
+				(1005, 1840)
+				(1990, 1881))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @38
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88D980326"
+			    client     	@36
+			    supplier   	@24
+			    vertices   	(list Points
+				(1991, 1903)
+				(991, 1991))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Сохранение альтернатив" @39
+			    Parent_View 	@29
+			    location   	(2170, 2204)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@39
+				location   	(2170, 2207)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Сохранение альтернатив")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88EAF0006"
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @40
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88EBF020F"
+			    client     	@25
+			    supplier   	@39
+			    vertices   	(list Points
+				(995, 2161)
+				(1999, 2197))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Приведение альтернатив к безразмерному виду" @41
+			    Parent_View 	@29
+			    location   	(2144, 2378)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@41
+				location   	(2144, 2381)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	486
+				justify    	0
+				label      	"Приведение альтернатив к безразмерному виду")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88ED70104"
+			    width      	592
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @42
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88F3E023B"
+			    client     	@39
+			    supplier   	@41
+			    vertices   	(list Points
+				(2162, 2257)
+				(2151, 2326))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Суммирование оценокальтернатив с учетом весов критериев" @43
+			    Parent_View 	@29
+			    location   	(2176, 2538)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@43
+				location   	(2176, 2541)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	650
+				justify    	0
+				label      	"Суммирование оценокальтернатив с учетом весов критериев")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88F160089"
+			    width      	756
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @44
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88F410155"
+			    client     	@41
+			    supplier   	@43
+			    vertices   	(list Points
+				(2154, 2431)
+				(2165, 2486))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Ввывод результата на экран" @45
+			    Parent_View 	@29
+			    location   	(2197, 2724)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@45
+				location   	(2197, 2727)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	362
+				justify    	0
+				label      	"Ввывод результата на экран")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED88F4400E8"
+			    width      	468
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @46
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88F640130"
+			    client     	@43
+			    supplier   	@45
+			    vertices   	(list Points
+				(2181, 2590)
+				(2191, 2672))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @47
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88F6701B2"
+			    client     	@45
+			    supplier   	@27
+			    vertices   	(list Points
+				(1990, 2721)
+				(1029, 2712))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object Swimlane "" @48
+			    location   	(2626, 0)
+			    line_color 	3342489
+			    width      	450)
+			(object SynchronizationView "$UNNAMED$58" @49
+			    location   	(806, 1644)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @50
+				Parent_View 	@49
+				location   	(1372, 1543)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				nlines     	2
+				max_width  	300
+				justify    	1
+				label      	""
+				pctDist    	1.070000
+				height     	32
+				orientation 	0)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"5ED88A8A00A6"
+			    width      	1066
+			    autoResize 	TRUE
+			    sync_flow_direction 	1
+			    sync_is_horizontal 	TRUE)
+			(object TransView "" @51
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88CE30311"
+			    client     	@12
+			    supplier   	@49
+			    vertices   	(list Points
+				(285, 924)
+				(798, 1634))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @52
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88CF300B6"
+			    client     	@10
+			    supplier   	@49
+			    vertices   	(list Points
+				(1445, 899)
+				(812, 1634))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @53
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88CF601FF"
+			    client     	@17
+			    supplier   	@49
+			    vertices   	(list Points
+				(515, 1096)
+				(800, 1634))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @54
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88CFB00EE"
+			    client     	@19
+			    supplier   	@49
+			    vertices   	(list Points
+				(790, 1289)
+				(805, 1634))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @55
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88CFF0056"
+			    client     	@21
+			    supplier   	@49
+			    vertices   	(list Points
+				(1114, 1115)
+				(810, 1634))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @56
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88D7F00B4"
+			    client     	@49
+			    supplier   	@23
+			    vertices   	(list Points
+				(806, 1653)
+				(826, 1780))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @57
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"5ED88F7102BB"
+			    client     	@27
+			    supplier   	@28
+			    vertices   	(list Points
+				(858, 2764)
+				(858, 2901))
+			    line_style 	0
+			    x_offset   	FALSE)))))
 	logical_presentations 	(list unit_reference_list
-	    (object UseCaseDiagram "Main"
+	    (object UseCaseDiagram "Use003"
 		quid       	"5ED75D2601C6"
-		title      	"Main"
-		zoom       	100
+		title      	"Use003"
+		zoom       	85
 		max_height 	28350
 		max_width  	21600
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object UseCaseView "Use Case View::Выбрать вид функции" @1
-			location   	(906, 1071)
+		    (object UseCaseView "Use Case View::Выбрать убывающую ф-цию" @58
+			location   	(340, 1316)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -170,20 +1690,20 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@1
-			    location   	(906, 1209)
+			    Parent_View 	@58
+			    location   	(340, 1454)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Выбрать вид функции")
+			    label      	"Выбрать убывающую ф-цию")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"5ED7C8580083"
+			quidu      	"5ED886AC0143"
 			height     	118)
-		    (object UseCaseView "Use Case View::Выбрать режим вывода результата" @2
-			location   	(700, 131)
+		    (object UseCaseView "Use Case View::Выбрать форму ввода критериев" @59
+			location   	(864, 919)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -195,108 +1715,8 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@2
-			    location   	(700, 269)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Выбрать режим вывода результата")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"5ED7C862008D"
-			height     	118)
-		    (object UseCaseView "Use Case View::Ввести веса критериев" @3
-			location   	(943, 359)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@3
-			    location   	(943, 497)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Ввести веса критериев")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"5ED7C7C201F1"
-			height     	118)
-		    (object UseCaseView "Use Case View::Создать критерии" @4
-			location   	(590, 543)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@4
-			    location   	(590, 681)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Создать критерии")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"5ED7C7CB0288"
-			height     	118)
-		    (object UseCaseView "Use Case View::Ввести параметры критериев" @5
-			location   	(956, 662)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@5
-			    location   	(956, 800)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Ввести параметры критериев")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"5ED7C87D0197"
-			height     	118)
-		    (object UseCaseView "Use Case View::Выбрать форму ввода критериев" @6
-			location   	(603, 887)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@6
-			    location   	(603, 1025)
+			    Parent_View 	@59
+			    location   	(864, 1057)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
@@ -307,11 +1727,11 @@
 			fill_color 	13434879
 			quidu      	"5ED7C8480002"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::Пользователь" @7
+		    (object ClassView "Class" "Use Case View::Пользователь" @60
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(252, 406)
+			location   	(284, 237)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -323,10 +1743,10 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@7
-			    location   	(252, 566)
+			    Parent_View 	@60
+			    location   	(284, 397)
 			    anchor_loc 	1
-			    nlines     	1
+			    nlines     	2
 			    max_width  	325
 			    justify    	0
 			    label      	"Пользователь")
@@ -336,168 +1756,8 @@
 			quidu      	"5ED7C7AC02F1"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$0" @8
-			location   	(389, 319)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"5ED7C90E02D8"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$1" @9
-				Parent_View 	@8
-				location   	(121, -84)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5ED7C90F0244"
-				client     	@8
-				supplier   	@2
-				vertices   	(list Points
-				    (389, 319)
-				    (470, 270))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$2" @10
-				Parent_View 	@8
-				location   	(121, -84)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5ED7C90F024F"
-				client     	@8
-				supplier   	@7
-				vertices   	(list Points
-				    (389, 319)
-				    (309, 368))
-				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$3" @11
-			location   	(570, 380)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"5ED7C9140075"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$4" @12
-				Parent_View 	@11
-				location   	(318, -26)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5ED7C9140224"
-				client     	@11
-				supplier   	@3
-				vertices   	(list Points
-				    (570, 380)
-				    (831, 362))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$5" @13
-				Parent_View 	@11
-				location   	(318, -26)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5ED7C9140227"
-				client     	@11
-				supplier   	@7
-				vertices   	(list Points
-				    (570, 380)
-				    (309, 399))
-				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$6" @14
-			location   	(394, 462)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"5ED7C915030D"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$7" @15
-				Parent_View 	@14
-				location   	(142, 56)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5ED7C9160056"
-				client     	@14
-				supplier   	@4
-				vertices   	(list Points
-				    (394, 462)
-				    (480, 496))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$8" @16
-				Parent_View 	@14
-				location   	(142, 56)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5ED7C916005A"
-				client     	@14
-				supplier   	@7
-				vertices   	(list Points
-				    (394, 462)
-				    (309, 428))
-				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$9" @17
-			location   	(577, 522)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"5ED7C91701CF"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$10" @18
-				Parent_View 	@17
-				location   	(325, 116)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5ED7C9180024"
-				client     	@17
-				supplier   	@5
-				vertices   	(list Points
-				    (577, 522)
-				    (846, 620))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$11" @19
-				Parent_View 	@17
-				location   	(325, 116)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"5ED7C9180029"
-				client     	@17
-				supplier   	@7
-				vertices   	(list Points
-				    (577, 522)
-				    (309, 425))
-				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$12" @20
-			location   	(471, 707)
+		    (object AssociationViewNew "$UNNAMED$12" @61
+			location   	(591, 599)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -512,32 +1772,32 @@
 			line_color 	3342489
 			quidu      	"5ED7C919023B"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$13" @21
-				Parent_View 	@20
-				location   	(219, 301)
+			    (object RoleView "$UNNAMED$13" @62
+				Parent_View 	@61
+				location   	(339, 193)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"5ED7C91A00A5"
-				client     	@20
-				supplier   	@6
+				client     	@61
+				supplier   	@59
 				vertices   	(list Points
-				    (471, 707)
-				    (560, 829))
+				    (591, 599)
+				    (813, 861))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$14" @22
-				Parent_View 	@20
-				location   	(219, 301)
+			    (object RoleView "$UNNAMED$14" @63
+				Parent_View 	@61
+				location   	(339, 193)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"5ED7C91A00A7"
-				client     	@20
-				supplier   	@7
+				client     	@61
+				supplier   	@60
 				vertices   	(list Points
-				    (471, 707)
-				    (382, 585))
+				    (591, 599)
+				    (370, 337))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$15" @23
-			location   	(471, 707)
+		    (object AssociationViewNew "$UNNAMED$15" @64
+			location   	(591, 599)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -552,32 +1812,32 @@
 			line_color 	3342489
 			quidu      	"5ED7C91B02F9"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$16" @24
-				Parent_View 	@23
-				location   	(219, 301)
+			    (object RoleView "$UNNAMED$16" @65
+				Parent_View 	@64
+				location   	(339, 193)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"5ED7C91C0145"
-				client     	@23
-				supplier   	@6
+				client     	@64
+				supplier   	@59
 				vertices   	(list Points
-				    (471, 707)
-				    (560, 829))
+				    (591, 599)
+				    (813, 861))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$17" @25
-				Parent_View 	@23
-				location   	(219, 301)
+			    (object RoleView "$UNNAMED$17" @66
+				Parent_View 	@64
+				location   	(339, 193)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"5ED7C91C014C"
-				client     	@23
-				supplier   	@7
+				client     	@64
+				supplier   	@60
 				vertices   	(list Points
-				    (471, 707)
-				    (382, 585))
+				    (591, 599)
+				    (370, 337))
 				line_style 	0)))
-		    (object UseCaseView "Use Case View::Ввести значения альтернатив" @26
-			location   	(575, 1175)
+		    (object UseCaseView "Use Case View::Выбрать ф-цию" @67
+			location   	(395, 776)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -589,8 +1849,568 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@26
-			    location   	(575, 1313)
+			    Parent_View 	@67
+			    location   	(395, 914)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Выбрать ф-цию")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED7C8580083"
+			height     	118)
+		    (object DependencyView "" @68
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED886E500E2"
+			client     	@67
+			supplier   	@58
+			vertices   	(list Points
+			    (376, 941)
+			    (344, 1258))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Выбрать возрастающую ф-цию" @69
+			location   	(342, 1022)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@69
+			    location   	(342, 1160)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Выбрать возрастающую ф-цию")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED8870A005C"
+			height     	118)
+		    (object DependencyView "" @70
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED887250221"
+			client     	@67
+			supplier   	@69
+			vertices   	(list Points
+			    (395, 776)
+			    (342, 1022))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Выбрать комбинированную ф-цию" @71
+			location   	(452, 1559)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@71
+			    location   	(452, 1697)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Выбрать комбинированную ф-цию")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED887290217"
+			height     	118)
+		    (object DependencyView "" @72
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED8873F00B0"
+			client     	@67
+			supplier   	@71
+			vertices   	(list Points
+			    (405, 941)
+			    (445, 1500))
+			line_style 	0)
+		    (object DependencyView "" @73
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED88783021F"
+			client     	@59
+			supplier   	@67
+			vertices   	(list Points
+			    (754, 884)
+			    (503, 806))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Выбрать таблицу" @74
+			location   	(845, 1273)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@74
+			    location   	(845, 1411)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Выбрать таблицу")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED887A70384"
+			height     	118)
+		    (object DependencyView "" @75
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED887AF02B4"
+			client     	@59
+			supplier   	@74
+			vertices   	(list Points
+			    (851, 1112)
+			    (846, 1215))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Выбрать массив" @76
+			location   	(1022, 1552)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@76
+			    location   	(1022, 1690)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Выбрать массив")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED887B101E9"
+			height     	118)
+		    (object DependencyView "" @77
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED887BA01BA"
+			client     	@59
+			supplier   	@76
+			vertices   	(list Points
+			    (910, 1112)
+			    (1006, 1494))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Выбрать режим вывода результата" @78
+			location   	(1262, 1165)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@78
+			    location   	(1262, 1303)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Выбрать режим вывода результата")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED7C862008D"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$0" @79
+			location   	(818, 744)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED7C90E02D8"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$1" @80
+				Parent_View 	@79
+				location   	(550, 341)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED7C90F0244"
+				client     	@79
+				supplier   	@78
+				vertices   	(list Points
+				    (818, 744)
+				    (1198, 1105))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$2" @81
+				Parent_View 	@79
+				location   	(550, 341)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED7C90F024F"
+				client     	@79
+				supplier   	@60
+				vertices   	(list Points
+				    (818, 744)
+				    (341, 292))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::Создать критерии" @82
+			location   	(1485, 926)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@82
+			    location   	(1485, 1064)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Создать критерии")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED7C7CB0288"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$6" @83
+			location   	(864, 568)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED7C915030D"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$7" @84
+				Parent_View 	@83
+				location   	(612, 162)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED7C9160056"
+				client     	@83
+				supplier   	@82
+				vertices   	(list Points
+				    (864, 568)
+				    (1388, 868))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$8" @85
+				Parent_View 	@83
+				location   	(612, 162)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED7C916005A"
+				client     	@83
+				supplier   	@60
+				vertices   	(list Points
+				    (864, 568)
+				    (341, 268))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::Сохранить пользовательские критерии" @86
+			location   	(3192, 978)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@86
+			    location   	(3192, 1116)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Сохранить пользовательские критерии")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED8864002C5"
+			height     	118)
+		    (object UseCaseView "Use Case View::Ввести веса критериев" @87
+			location   	(1104, 456)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@87
+			    location   	(1104, 594)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Ввести веса критериев")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED7C7C201F1"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$3" @88
+			location   	(666, 337)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED7C9140075"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$4" @89
+				Parent_View 	@88
+				location   	(414, -69)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED7C9140224"
+				client     	@88
+				supplier   	@87
+				vertices   	(list Points
+				    (666, 337)
+				    (992, 423))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$5" @90
+				Parent_View 	@88
+				location   	(414, -69)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED7C9140227"
+				client     	@88
+				supplier   	@60
+				vertices   	(list Points
+				    (666, 337)
+				    (341, 251))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::Ввести параметры критериев" @91
+			location   	(1353, 680)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@91
+			    location   	(1353, 818)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Ввести параметры критериев")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED7C87D0197"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$9" @92
+			location   	(792, 445)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED7C91701CF"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$10" @93
+				Parent_View 	@92
+				location   	(540, 39)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED7C9180024"
+				client     	@92
+				supplier   	@91
+				vertices   	(list Points
+				    (792, 445)
+				    (1243, 632))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$11" @94
+				Parent_View 	@92
+				location   	(540, 39)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED7C9180029"
+				client     	@92
+				supplier   	@60
+				vertices   	(list Points
+				    (792, 445)
+				    (341, 259))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::Сохранить альтенативы" @95
+			location   	(3041, 1281)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@95
+			    location   	(3041, 1419)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Сохранить альтенативы")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED88692027A"
+			height     	118)
+		    (object UseCaseView "Use Case View::Вывести результаты на экран" @96
+			location   	(1652, 205)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@96
+			    location   	(1652, 343)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Вывести результаты на экран")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED8862B011E"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$42" @97
+			location   	(941, 219)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED886CB03C2"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$43" @98
+				Parent_View 	@97
+				location   	(-1306, -978)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886CD0106"
+				client     	@97
+				supplier   	@60
+				vertices   	(list Points
+				    (941, 219)
+				    (341, 233))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$44" @99
+				Parent_View 	@97
+				location   	(-1306, -978)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886CD0115"
+				client     	@97
+				supplier   	@96
+				vertices   	(list Points
+				    (941, 219)
+				    (1541, 205))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::Ввести значения альтернатив" @100
+			location   	(1703, 437)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@100
+			    location   	(1703, 575)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
@@ -601,8 +2421,8 @@
 			fill_color 	13434879
 			quidu      	"5ED7C7F00170"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$18" @27
-			location   	(438, 854)
+		    (object AssociationViewNew "$UNNAMED$18" @101
+			location   	(967, 329)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -617,35 +2437,32 @@
 			line_color 	3342489
 			quidu      	"5ED7C91E008B"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$19" @28
-				Parent_View 	@27
-				location   	(186, 448)
+			    (object RoleView "$UNNAMED$19" @102
+				Parent_View 	@101
+				location   	(715, -77)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"5ED7C91E036C"
-				client     	@27
-				supplier   	@26
+				client     	@101
+				supplier   	@100
 				vertices   	(list Points
-				    (438, 854)
-				    (550, 1117))
+				    (967, 329)
+				    (1593, 417))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$20" @29
-				Parent_View 	@27
-				location   	(186, 448)
+			    (object RoleView "$UNNAMED$20" @103
+				Parent_View 	@101
+				location   	(715, -77)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"5ED7C91E036F"
-				client     	@27
-				supplier   	@7
+				client     	@101
+				supplier   	@60
 				vertices   	(list Points
-				    (438, 854)
-				    (327, 591))
+				    (967, 329)
+				    (341, 242))
 				line_style 	0)))
-		    (object ClassView "Class" "Use Case View::Система" @30
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(1826, 297)
+		    (object UseCaseView "Use Case View::Привести данные к безразмерному виду" @104
+			location   	(2933, 651)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -657,11 +2474,64 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@30
-			    location   	(1826, 457)
+			    Parent_View 	@104
+			    location   	(2933, 789)
 			    anchor_loc 	1
 			    nlines     	2
-			    max_width  	328
+			    max_width  	630
+			    justify    	0
+			    label      	"Привести данные к безразмерному виду")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED887F60158"
+			height     	118)
+		    (object UseCaseView "Use Case View::Выбрать наилучшую альтернативу" @105
+			location   	(2334, 1272)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@105
+			    location   	(2334, 1410)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Выбрать наилучшую альтернативу")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED8881A0291"
+			height     	118)
+		    (object ClassView "Class" "Use Case View::Система" @106
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2273, 672)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@106
+			    location   	(2273, 832)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	325
 			    justify    	0
 			    label      	"Система")
 			icon       	"Actor"
@@ -669,7 +2539,477 @@
 			line_color 	3342489
 			quidu      	"5ED7C9230272"
 			annotation 	8
-			autoResize 	TRUE)))))
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$21" @107
+			location   	(1791, 903)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED886240242"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$22" @108
+				Parent_View 	@107
+				location   	(1091, 772)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886270261"
+				client     	@107
+				supplier   	@106
+				vertices   	(list Points
+				    (1791, 903)
+				    (2213, 697))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$23" @109
+				Parent_View 	@107
+				location   	(1091, 772)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886270271"
+				client     	@107
+				supplier   	@78
+				vertices   	(list Points
+				    (1791, 903)
+				    (1370, 1108))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$24" @110
+			location   	(1902, 788)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED886600255"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$25" @111
+				Parent_View 	@110
+				location   	(1312, 245)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886610216"
+				client     	@110
+				supplier   	@106
+				vertices   	(list Points
+				    (1902, 788)
+				    (2212, 689))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$26" @112
+				Parent_View 	@110
+				location   	(1312, 245)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886610226"
+				client     	@110
+				supplier   	@82
+				vertices   	(list Points
+				    (1902, 788)
+				    (1593, 887))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$27" @113
+			location   	(2705, 813)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED8866400AF"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$28" @114
+				Parent_View 	@113
+				location   	(879, 516)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886640235"
+				client     	@113
+				supplier   	@86
+				vertices   	(list Points
+				    (2705, 813)
+				    (3080, 938))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$29" @115
+				Parent_View 	@113
+				location   	(879, 516)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886640245"
+				client     	@113
+				supplier   	@106
+				vertices   	(list Points
+				    (2705, 813)
+				    (2330, 689))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$30" @116
+			location   	(1712, 566)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED8868600F1"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$31" @117
+				Parent_View 	@116
+				location   	(759, 51)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886870045"
+				client     	@116
+				supplier   	@106
+				vertices   	(list Points
+				    (1712, 566)
+				    (2212, 659))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$32" @118
+				Parent_View 	@116
+				location   	(759, 51)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886870054"
+				client     	@116
+				supplier   	@87
+				vertices   	(list Points
+				    (1712, 566)
+				    (1212, 473))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$33" @119
+			location   	(1837, 674)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED8868B02AB"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$34" @120
+				Parent_View 	@119
+				location   	(1003, -101)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED8868C01B1"
+				client     	@119
+				supplier   	@106
+				vertices   	(list Points
+				    (1837, 674)
+				    (2214, 672))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$35" @121
+				Parent_View 	@119
+				location   	(1003, -101)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED8868C01D1"
+				client     	@119
+				supplier   	@91
+				vertices   	(list Points
+				    (1837, 674)
+				    (1461, 676))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$36" @122
+			location   	(2648, 970)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED886A403CE"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$37" @123
+				Parent_View 	@122
+				location   	(822, 673)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886A502E4"
+				client     	@122
+				supplier   	@95
+				vertices   	(list Points
+				    (2648, 970)
+				    (2967, 1222))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$38" @124
+				Parent_View 	@122
+				location   	(822, 673)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886A502E6"
+				client     	@122
+				supplier   	@106
+				vertices   	(list Points
+				    (2648, 970)
+				    (2330, 716))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$39" @125
+			location   	(2043, 497)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED886C9018F"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$40" @126
+				Parent_View 	@125
+				location   	(-119, 280)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886C90364"
+				client     	@125
+				supplier   	@96
+				vertices   	(list Points
+				    (2043, 497)
+				    (1874, 370))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$41" @127
+				Parent_View 	@125
+				location   	(-119, 280)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886C90366"
+				client     	@125
+				supplier   	@106
+				vertices   	(list Points
+				    (2043, 497)
+				    (2212, 624))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$45" @128
+			location   	(2113, 603)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED886DF009F"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$46" @129
+				Parent_View 	@128
+				location   	(1538, -572)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886E0014A"
+				client     	@128
+				supplier   	@106
+				vertices   	(list Points
+				    (2113, 603)
+				    (2213, 644))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$47" @130
+				Parent_View 	@128
+				location   	(1538, -572)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED886E0016A"
+				client     	@128
+				supplier   	@100
+				vertices   	(list Points
+				    (2113, 603)
+				    (2013, 563))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$51" @131
+			location   	(2575, 660)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED888070183"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$52" @132
+				Parent_View 	@131
+				location   	(302, -12)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED88808006A"
+				client     	@131
+				supplier   	@104
+				vertices   	(list Points
+				    (2575, 660)
+				    (2821, 652))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$53" @133
+				Parent_View 	@131
+				location   	(302, -12)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED88808007A"
+				client     	@131
+				supplier   	@106
+				vertices   	(list Points
+				    (2575, 660)
+				    (2330, 668))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$54" @134
+			location   	(2308, 1035)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED8882B002B"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$55" @135
+				Parent_View 	@134
+				location   	(35, 363)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED8882B020F"
+				client     	@134
+				supplier   	@105
+				vertices   	(list Points
+				    (2308, 1035)
+				    (2324, 1212))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$56" @136
+				Parent_View 	@134
+				location   	(35, 363)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5ED8882B0211"
+				client     	@134
+				supplier   	@106
+				vertices   	(list Points
+				    (2308, 1035)
+				    (2289, 857))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::Вывести наилучшую только альтернативу" @137
+			location   	(2624, 397)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@137
+			    location   	(2624, 535)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Вывести наилучшую только альтернативу")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED8882E02BB"
+			height     	118)
+		    (object UseCaseView "Use Case View::Вывести наилуч. алтернативу и промежуточные расчеты" @138
+			location   	(2569, 91)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@138
+			    location   	(2569, 229)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Вывести наилуч. алтернативу и промежуточные расчеты")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5ED8884701F7"
+			height     	118)
+		    (object DependencyView "" @139
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED8886002B0"
+			client     	@96
+			supplier   	@138
+			vertices   	(list Points
+			    (1760, 188)
+			    (2457, 102))
+			line_style 	0)
+		    (object DependencyView "" @140
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5ED88862035C"
+			client     	@96
+			supplier   	@137
+			vertices   	(list Points
+			    (1960, 263)
+			    (2513, 373))
+			line_style 	0)))))
     root_category 	(object Class_Category "Logical View"
 	quid       	"5ED75D1C0330"
 	exportControl 	"Public"
@@ -677,6 +3017,54 @@
 	subsystem  	"Component View"
 	quidu      	"5ED75D1C0332"
 	logical_models 	(list unit_reference_list)
+	statemachine 	(object State_Machine "State/Activity Model2"
+	    quid       	"5ED8B07C01CF"
+	    states     	(list States
+		(object State "Принятие решения"
+		    quid       	"5ED8B13B03AD"
+		    type       	"Normal"))
+	    partitions 	(list Partitions)
+	    objects    	(list Objects)
+	    transitions 	(list transition_list)
+	    objectflows 	(list objectflow_list)
+	    statediagrams 	(list StateDiagrams
+		(object State_Diagram "Sos005"
+		    quid       	"5ED8B07C01DD"
+		    title      	"Sos005"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object StateView "Normal" "Принятие решения" @141
+			    location   	(1175, 568)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@141
+				location   	(1175, 309)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	1636
+				justify    	0
+				label      	"Принятие решения")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5ED8B13B03AD"
+			    width      	1732
+			    height     	631
+			    autoResize 	TRUE)))))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
 		quid       	"5ED75D260203"
